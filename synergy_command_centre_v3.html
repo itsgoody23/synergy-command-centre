@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Synergy — Command Centre v3</title>
+<style>
+/* ═══════════════════════════════════════════════════════
+   SYNERGY COMMAND CENTRE v3 — LIQUID GLASS · UNIFIED
+   All Tiers: Quick Wins + Functional Add-ons + Major Enhancements
+   ═══════════════════════════════════════════════════════ */
+
+@font-face{font-family:'SF Pro Display';src:local('SF Pro Display'),local('.SFNSDisplay')}
+@font-face{font-family:'SF Pro Text';src:local('SF Pro Text'),local('.SFNSText')}
+
+/* ─── LIGHT THEME ─── */
+[data-theme="light"]{
+  --bg:#f2f2f7;
+  --bg-solid:#f2f2f7;
+  --mesh1:rgba(120,200,255,.10);
+  --mesh2:rgba(200,160,255,.07);
+  --mesh3:rgba(255,180,200,.05);
+  --glass:rgba(255,255,255,.52);
+  --glass-b:rgba(255,255,255,.65);
+  --glass-hover:rgba(255,255,255,.72);
+  --glass-deep:rgba(255,255,255,.35);
+  --sidebar-glass:rgba(255,255,255,.55);
+  --sidebar-border:rgba(255,255,255,.7);
+  --topbar-glass:rgba(249,249,249,.72);
+  --bnav-glass:rgba(249,249,249,.72);
+  --modal-glass:rgba(255,255,255,.88);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.03);
+  --shadow-md:0 4px 20px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.06);
+  --inset-hi:inset 0 1px 0 rgba(255,255,255,.55);
+  --card-top-line:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+  --text:#1c1c1e;
+  --text2:rgba(60,60,67,.6);
+  --text3:rgba(60,60,67,.28);
+  --sep:rgba(60,60,67,.08);
+  --sep2:rgba(60,60,67,.12);
+  --input-bg:rgba(0,0,0,.03);
+  --table-hover:rgba(0,122,255,.02);
+  --chip-active-bg:#1c1c1e;
+  --chip-active-text:#fff;
+  --snav-active-bg:rgba(0,122,255,.08);
+  --snav-hover-bg:rgba(0,0,0,.03);
+  --scroll-thumb:rgba(0,0,0,.08);
+  --overlay:rgba(0,0,0,.3);
+  --accent-on-dark:#fff;
+}
+
+/* ─── DARK THEME ─── */
+[data-theme="dark"]{
+  --bg:#000000;
+  --bg-solid:#000000;
+  --mesh1:rgba(0,122,255,.08);
+  --mesh2:rgba(175,82,222,.06);
+  --mesh3:rgba(255,45,85,.04);
+  --glass:rgba(30,30,32,.60);
+  --glass-b:rgba(255,255,255,.08);
+  --glass-hover:rgba(40,40,44,.70);
+  --glass-deep:rgba(20,20,22,.55);
+  --sidebar-glass:rgba(18,18,20,.80);
+  --sidebar-border:rgba(255,255,255,.06);
+  --topbar-glass:rgba(18,18,20,.75);
+  --bnav-glass:rgba(18,18,20,.80);
+  --modal-glass:rgba(30,30,34,.92);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.15);
+  --shadow-md:0 4px 20px rgba(0,0,0,.20);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.30);
+  --inset-hi:inset 0 1px 0 rgba(255,255,255,.06);
+  --card-top-line:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  --text:#f5f5f7;
+  --text2:rgba(235,235,245,.6);
+  --text3:rgba(235,235,245,.25);
+  --sep:rgba(255,255,255,.06);
+  --sep2:rgba(255,255,255,.10);
+  --input-bg:rgba(255,255,255,.05);
+  --table-hover:rgba(0,122,255,.04);
+  --chip-active-bg:rgba(255,255,255,.92);
+  --chip-active-text:#000;
+  --snav-active-bg:rgba(0,122,255,.14);
+  --snav-hover-bg:rgba(255,255,255,.04);
+  --scroll-thumb:rgba(255,255,255,.10);
+  --overlay:rgba(0,0,0,.55);
+  --accent-on-dark:#000;
+}
+
+/* ─── SHARED COLOR TOKENS ─── */
+:root{
+  --mint:#34c759;--mint-bg:rgba(52,199,89,.12);
+  --sky:#007aff;--sky-bg:rgba(0,122,255,.12);
+  --coral:#ff6b6b;--coral-bg:rgba(255,107,107,.12);
+  --amber:#ff9f0a;--amber-bg:rgba(255,159,10,.12);
+  --violet:#af52de;--violet-bg:rgba(175,82,222,.12);
+  --teal:#5ac8fa;--teal-bg:rgba(90,200,250,.12);
+  --pink:#ff2d55;--pink-bg:rgba(255,45,85,.10);
+  --indigo:#5856d6;--indigo-bg:rgba(88,86,214,.12);
+  --r-sm:12px;--r-md:18px;--r-lg:24px;--r-xl:32px;
+  --sidebar-w:260px;
+  --nav-h:82px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+[data-theme="dark"]{
+  --mint:#30d158;--mint-bg:rgba(48,209,88,.15);
+  --sky:#0a84ff;--sky-bg:rgba(10,132,255,.15);
+  --coral:#ff6961;--coral-bg:rgba(255,105,97,.15);
+  --amber:#ff9f0a;--amber-bg:rgba(255,159,10,.15);
+  --violet:#bf5af2;--violet-bg:rgba(191,90,242,.15);
+  --teal:#64d2ff;--teal-bg:rgba(100,210,255,.15);
+  --pink:#ff375f;--pink-bg:rgba(255,55,95,.12);
+  --indigo:#5e5ce6;--indigo-bg:rgba(94,92,230,.15);
+}
+
+/* ─── RESET ─── */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{
+  font-family:'SF Pro Display','SF Pro Text',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  -webkit-font-smoothing:antialiased;font-size:16px;
+  background:var(--bg);color:var(--text);height:100%;
+  transition:background .35s ease,color .35s ease;
+}
+body{height:100%;overflow:hidden;display:flex}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:4px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ─── AMBIENT ─── */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .35s}
+.ambient::before{content:'';position:absolute;width:800px;height:800px;top:-300px;left:-200px;background:radial-gradient(circle,var(--mesh1) 0%,transparent 70%);animation:mf1 22s ease-in-out infinite}
+.ambient::after{content:'';position:absolute;width:600px;height:600px;bottom:-200px;right:-100px;background:radial-gradient(circle,var(--mesh2) 0%,transparent 70%);animation:mf2 28s ease-in-out infinite}
+.ambient .m3{position:absolute;width:500px;height:500px;top:45%;left:40%;background:radial-gradient(circle,var(--mesh3) 0%,transparent 60%);animation:mf3 20s ease-in-out infinite}
+@keyframes mf1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,40px) scale(1.12)}}
+@keyframes mf2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,-30px) scale(1.08)}}
+@keyframes mf3{0%,100%{transform:translate(0,0)}33%{transform:translate(25px,-30px)}66%{transform:translate(-20px,25px)}}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:var(--sidebar-glass);
+  backdrop-filter:blur(60px) saturate(180%);-webkit-backdrop-filter:blur(60px) saturate(180%);
+  border-right:.5px solid var(--sidebar-border);
+  display:flex;flex-direction:column;z-index:50;position:relative;
+  overflow-y:auto;overflow-x:hidden;padding:0 12px;
+  transition:background .35s,border-color .35s;
+}
+.sidebar-brand{padding:28px 12px 20px;display:flex;align-items:center;gap:10px}
+.sidebar-brand .logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--mint),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
+.sidebar-brand .bname{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.sidebar-brand .bsub{font-size:10px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.sidebar-section{padding:6px 0}
+.sidebar-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text3);font-weight:600;padding:14px 12px 6px}
+.snav{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-sm);cursor:pointer;font-size:14px;font-weight:500;color:var(--text2);transition:all .18s;position:relative;margin-bottom:2px}
+.snav:hover{background:var(--snav-hover-bg);color:var(--text)}
+.snav.active{background:var(--snav-active-bg);color:var(--sky);font-weight:600}
+.snav .si{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.snav .badge{margin-left:auto;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;min-width:22px;text-align:center}
+.b-green{background:var(--mint-bg);color:var(--mint)}
+.b-blue{background:var(--sky-bg);color:var(--sky)}
+.b-coral{background:var(--coral-bg);color:var(--coral)}
+.b-amber{background:var(--amber-bg);color:var(--amber)}
+.b-violet{background:var(--violet-bg);color:var(--violet)}
+
+/* ─── MAIN ─── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:1}
+
+/* ─── TOPBAR ─── */
+.topbar{
+  height:58px;flex-shrink:0;
+  background:var(--topbar-glass);
+  backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-bottom:.5px solid var(--sep);
+  display:flex;align-items:center;padding:0 28px;gap:14px;z-index:40;
+  transition:background .35s,border-color .35s;
+}
+.topbar .mob-toggle{display:none;width:36px;height:36px;border-radius:10px;border:none;background:transparent;font-size:18px;cursor:pointer;color:var(--text2)}
+.search-bar{flex:1;max-width:480px;position:relative}
+.search-bar input{width:100%;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-sm);padding:10px 14px 10px 38px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border .2s,background .2s}
+.search-bar input:focus{border-color:var(--sky);background:var(--glass-hover)}
+.search-bar input::placeholder{color:var(--text3)}
+.search-bar .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px}
+.search-bar .kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--text3);background:var(--input-bg);padding:2px 8px;border-radius:6px;font-family:inherit;pointer-events:none}
+.topbar-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.top-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--sep2);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s}
+.top-btn:hover{border-color:var(--sky);color:var(--sky);background:var(--glass-hover)}
+.top-btn.has-dot{position:relative}
+.top-btn.has-dot::after{content:'';position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--coral);border-radius:50%;border:2px solid var(--bg-solid)}
+.avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--mint),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;cursor:pointer}
+
+/* ─── CONTENT ─── */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:28px 32px;-webkit-overflow-scrolling:touch}
+.panel{display:none;animation:panelIn .4s cubic-bezier(.25,.46,.45,.94)}
+.panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.panel-head{margin-bottom:28px}
+.panel-head .greeting{font-size:14px;font-weight:500;color:var(--text2);margin-bottom:2px}
+.panel-head h1{font-size:34px;font-weight:800;letter-spacing:-.8px;line-height:1.1}
+.panel-head .sub{font-size:15px;color:var(--text2);margin-top:4px}
+.panel-head-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+
+/* ─── GLASS CARD ─── */
+.gc{
+  background:var(--glass);
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r-lg);padding:22px;
+  box-shadow:var(--shadow-sm),var(--inset-hi);
+  margin-bottom:16px;transition:transform .2s,box-shadow .2s,background .35s,border-color .35s;
+  position:relative;overflow:hidden;
+}
+.gc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--card-top-line)}
+.gc:hover{box-shadow:var(--shadow-md),var(--inset-hi)}
+
+/* ─── BENTO ─── */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.bento-card{
+  background:var(--glass);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border:1px solid var(--glass-b);border-radius:var(--r-lg);
+  padding:22px 20px;box-shadow:var(--shadow-sm),var(--inset-hi);
+  cursor:pointer;transition:transform .2s,box-shadow .2s,background .35s;position:relative;overflow:hidden;
+}
+.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--card-top-line)}
+.bento-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md),var(--inset-hi)}
+.bento-card:active{transform:scale(.97)}
+.bento-card .bi{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.bento-card .bv{font-size:32px;font-weight:800;letter-spacing:-1.2px;line-height:1}
+.bento-card .bl{font-size:13px;font-weight:500;color:var(--text2);margin-top:3px}
+.bento-card .sparkline{margin-top:8px;height:30px}
+
+/* ─── SECTION ─── */
+.sec-label{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--text3);padding:20px 0 10px}
+
+/* ─── TABLE ─── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-md);border:1px solid var(--glass-b);background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);transition:background .35s,border-color .35s}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{padding:11px 16px;text-align:left;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);border-bottom:.5px solid var(--sep);white-space:nowrap;background:var(--input-bg);cursor:pointer;user-select:none}
+.tbl th:hover{color:var(--text)}
+.tbl th .sort-icon{margin-left:4px;font-size:8px;opacity:.4}
+.tbl td{padding:12px 16px;border-bottom:.5px solid var(--sep);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--table-hover)}
+
+/* ─── PILLS ─── */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.p-mint{background:var(--mint-bg);color:var(--mint)}.p-sky{background:var(--sky-bg);color:var(--sky)}.p-coral{background:var(--coral-bg);color:var(--coral)}.p-amber{background:var(--amber-bg);color:var(--amber)}.p-violet{background:var(--violet-bg);color:var(--violet)}.p-teal{background:var(--teal-bg);color:var(--teal)}.p-dim{background:var(--input-bg);color:var(--text2)}.p-pink{background:var(--pink-bg);color:var(--pink)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.domain-tag{padding:2px 7px;border-radius:5px;font-size:9px;font-weight:700;letter-spacing:.5px}
+.d-syn{background:var(--mint-bg);color:var(--mint)}.d-bpo{background:var(--sky-bg);color:var(--sky)}.d-enn{background:var(--violet-bg);color:var(--violet)}.d-agoc{background:var(--amber-bg);color:var(--amber)}
+
+/* ─── BUTTONS ─── */
+.btn{padding:9px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;border:1px solid var(--sep2);transition:all .15s;display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--text)}
+.btn-p{background:var(--sky);color:#fff;border-color:var(--sky)}.btn-p:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--text2)}.btn-g:hover{background:var(--snav-hover-bg);color:var(--text)}
+.btn-sm{padding:6px 14px;font-size:12px}
+.btn-danger{background:var(--coral);color:#fff;border-color:var(--coral)}
+
+/* ─── CHIPS ─── */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--sep2);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:var(--text2);transition:all .18s;white-space:nowrap}
+.chip:hover{background:var(--snav-hover-bg);color:var(--text)}
+.chip.on{background:var(--chip-active-bg);color:var(--chip-active-text);border-color:var(--chip-active-bg)}
+
+/* ─── PROGRESS ─── */
+.pbar{height:5px;background:var(--input-bg);border-radius:3px;overflow:hidden}.pfill{height:100%;border-radius:3px;transition:width .6s ease}
+
+/* ─── GRIDS ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+/* ─── ACCOUNT ROW ─── */
+.acc-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-md);margin-bottom:10px;cursor:pointer;transition:transform .15s,background .35s;box-shadow:var(--shadow-sm),var(--inset-hi)}
+.acc-row:hover{transform:translateY(-1px);box-shadow:var(--shadow-md),var(--inset-hi)}
+.acc-row:active{transform:scale(.98)}
+.acc-row .ai{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.acc-row .an{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.acc-row .ae{font-size:12px;color:var(--text2)}
+.acc-row .ab{min-width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;margin-left:auto}
+
+/* ─── TIMELINE ─── */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:1.5px;background:var(--sep2);border-radius:1px}
+.tl-item{position:relative;padding:14px 0}
+.tl-item .td{position:absolute;left:-26px;top:18px;width:13px;height:13px;border-radius:50%;border:2.5px solid;background:var(--bg-solid);z-index:1}
+.tl-item .tc{background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-md);padding:14px 18px;box-shadow:var(--shadow-sm);transition:background .35s}
+.tl-item .tt{font-size:15px;font-weight:600;letter-spacing:-.2px;margin-bottom:3px}
+.tl-item .tm{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tl-item .tw{font-size:11px;color:var(--text3)}
+
+/* ─── CAMPAIGN ─── */
+.camp{background:var(--glass);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid var(--glass-b);border-radius:var(--r-lg);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm),var(--inset-hi);position:relative;overflow:hidden;transition:background .35s}
+.camp .ci{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:0 2px 2px 0}
+.camp .ch{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.camp .cn{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.camp .cd{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:14px}
+.camp .cs{display:flex;gap:20px}.camp .cs-v{font-size:22px;font-weight:800;letter-spacing:-.5px}.camp .cs-l{font-size:10px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+
+/* ─── TASK ─── */
+.task-r{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:.5px solid var(--sep);transition:opacity .3s}
+.task-r:last-child{border-bottom:none}
+.task-r.completed .tn{text-decoration:line-through;opacity:.4}
+.task-r.completed .tmeta{opacity:.3}
+.task-ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--sep2);flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;background:transparent}
+.task-ck.done{background:var(--mint);border-color:var(--mint)}.task-ck.done::after{content:'✓';color:#fff;font-size:12px;font-weight:700}
+.task-r .tn{font-size:15px;font-weight:500;letter-spacing:-.2px;line-height:1.3}
+.task-r .tmeta{font-size:12px;color:var(--text2);margin-top:3px;display:flex;align-items:center;gap:6px}
+
+/* ─── KPI ─── */
+.kpi-row{display:flex;justify-content:space-around;padding:16px 0}
+.kpi{text-align:center}
+.kpi svg{width:80px;height:80px}
+.kpi .kt{fill:none;stroke:var(--input-bg);stroke-width:6}
+.kpi .kf{fill:none;stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.kpi .kv{font-size:20px;font-weight:800;letter-spacing:-.5px}
+.kpi .kl{font-size:11px;font-weight:500;color:var(--text2);margin-top:6px}
+
+/* ─── CHAT ─── */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 160px)}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px 0}
+.chat-msgs::-webkit-scrollbar{display:none}
+.cb-wrap{display:flex;gap:10px;margin-bottom:16px;max-width:80%;animation:cbIn .3s ease}
+.cb-wrap.user{margin-left:auto;flex-direction:row-reverse}
+@keyframes cbIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cb-av{width:30px;height:30px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:2px}
+.cb-wrap.ai .cb-av{background:linear-gradient(135deg,var(--mint),var(--teal));color:#fff}
+.cb-wrap.user .cb-av{background:var(--sky);color:#fff}
+.cb{background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:18px;padding:13px 18px;font-size:15px;line-height:1.55;letter-spacing:-.1px;transition:background .35s}
+.cb-wrap.user .cb{background:var(--sky);border-color:var(--sky);color:#fff}
+.chat-in{display:flex;gap:10px;padding:12px 0;border-top:.5px solid var(--sep);align-items:center}
+.chat-in input{flex:1;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:22px;padding:12px 20px;font-size:15px;font-family:inherit;color:var(--text);outline:none;transition:background .35s,border-color .2s}
+.chat-in input:focus{border-color:var(--sky)}
+.chat-in input::placeholder{color:var(--text3)}
+.chat-send{width:42px;height:42px;border-radius:50%;background:var(--sky);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .15s;color:#fff;font-size:18px;font-weight:700}
+.chat-send:active{transform:scale(.9)}
+.typing-dots{display:inline-flex;gap:4px;padding:4px 0}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:dotPulse 1.4s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+
+/* ─── LEAD ROW ─── */
+.lead-r{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:.5px solid var(--sep);cursor:pointer}
+.lead-r:last-child{border-bottom:none}
+.lead-av{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;color:#fff}
+.lead-r .ln{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.lead-r .ld{font-size:12px;color:var(--text2)}
+.lead-r .ls{flex-shrink:0;margin-left:auto}
+.lead-r .lead-score{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-left:8px}
+.score-high{background:var(--mint-bg);color:var(--mint)}
+.score-mid{background:var(--amber-bg);color:var(--amber)}
+.score-low{background:var(--coral-bg);color:var(--coral)}
+
+/* ─── ROLE ─── */
+.role{padding:3px 10px;border-radius:6px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.r-admin{background:var(--coral-bg);color:var(--coral)}.r-mgr{background:var(--sky-bg);color:var(--sky)}.r-analyst{background:var(--mint-bg);color:var(--mint)}.r-viewer{background:var(--violet-bg);color:var(--violet)}
+
+/* ─── CELEBRATION ─── */
+.celeb{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;background:linear-gradient(135deg,var(--mint-bg),var(--teal-bg));color:var(--mint)}
+
+/* ─── ANIMATIONS ─── */
+.fade{opacity:0;animation:fadeU .5s cubic-bezier(.25,.46,.45,.94) forwards}
+@keyframes fadeU{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.s1{animation-delay:.05s}.s2{animation-delay:.1s}.s3{animation-delay:.15s}.s4{animation-delay:.2s}.s5{animation-delay:.25s}
+
+/* ─── MODAL ─── */
+.modal-bg{position:fixed;inset:0;background:var(--overlay);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal-bg.show{display:flex}
+.modal{background:var(--modal-glass);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);border:1px solid var(--glass-b);border-radius:var(--r-xl);padding:32px;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;animation:mIn .3s ease;box-shadow:var(--shadow-lg);transition:background .35s}
+@keyframes mIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal h2{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--input-bg);border:1px solid var(--sep2);border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border .2s,background .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky)}
+.fg textarea{min-height:80px;resize:vertical}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg select{appearance:auto}
+
+/* ─── KANBAN PIPELINE ─── */
+.kanban{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;min-height:400px}
+.kanban-col{min-width:240px;flex:1;background:var(--glass-deep);border-radius:var(--r-lg);padding:14px;border:1px solid var(--glass-b)}
+.kanban-col-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:4px 0}
+.kanban-col-head .kch-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.kanban-col-head .kch-count{font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--input-bg);color:var(--text2)}
+.kanban-col-head .kch-val{font-size:11px;font-weight:600;color:var(--text3)}
+.kanban-card{background:var(--glass);backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-md);padding:14px;margin-bottom:8px;cursor:grab;transition:transform .15s,box-shadow .15s}
+.kanban-card:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.kanban-card:active{cursor:grabbing;transform:scale(.98)}
+.kanban-card.dragging{opacity:.5;transform:rotate(2deg)}
+.kanban-card .kc-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.kanban-card .kc-meta{font-size:11px;color:var(--text2)}
+.kanban-col.drag-over{background:var(--sky-bg);border-color:var(--sky)}
+
+/* ─── TOAST ─── */
+.toast-container{position:fixed;top:70px;right:24px;z-index:600;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--modal-glass);backdrop-filter:blur(40px);border:1px solid var(--glass-b);border-radius:var(--r-md);padding:14px 20px;box-shadow:var(--shadow-lg);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;pointer-events:auto;max-width:360px}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+.toast-icon{font-size:18px;flex-shrink:0}
+
+/* ─── COMMAND PALETTE / SEARCH OVERLAY ─── */
+.cmd-overlay{position:fixed;inset:0;background:var(--overlay);z-index:700;display:none;align-items:flex-start;justify-content:center;padding-top:120px;backdrop-filter:blur(8px)}
+.cmd-overlay.show{display:flex}
+.cmd-box{background:var(--modal-glass);backdrop-filter:blur(50px);border:1px solid var(--glass-b);border-radius:var(--r-xl);width:90%;max-width:560px;box-shadow:var(--shadow-lg);animation:mIn .2s ease;overflow:hidden}
+.cmd-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--sep);padding:18px 24px;font-size:17px;font-family:inherit;color:var(--text);outline:none}
+.cmd-input::placeholder{color:var(--text3)}
+.cmd-results{max-height:360px;overflow-y:auto;padding:8px}
+.cmd-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r-sm);cursor:pointer;transition:background .15s}
+.cmd-item:hover,.cmd-item.selected{background:var(--snav-active-bg)}
+.cmd-item .cmd-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cmd-item .cmd-label{font-size:14px;font-weight:500}
+.cmd-item .cmd-desc{font-size:11px;color:var(--text3)}
+.cmd-item .cmd-shortcut{margin-left:auto;font-size:11px;color:var(--text3);background:var(--input-bg);padding:2px 8px;border-radius:5px}
+.cmd-empty{padding:24px;text-align:center;color:var(--text3);font-size:14px}
+
+/* ─── CALENDAR ─── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);text-align:center;padding:8px 0}
+.cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:6px;border-radius:var(--r-sm);cursor:pointer;transition:background .15s;font-size:13px;position:relative}
+.cal-cell:hover{background:var(--snav-hover-bg)}
+.cal-cell.today{background:var(--sky-bg);font-weight:700;color:var(--sky)}
+.cal-cell.other-month{color:var(--text3);opacity:.4}
+.cal-cell .cal-dots{display:flex;gap:2px;margin-top:4px}
+.cal-cell .cal-dot{width:5px;height:5px;border-radius:50%}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav h2{font-size:18px;font-weight:700}
+.cal-nav-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--sep2);background:var(--glass);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:var(--text2);transition:all .15s}
+.cal-nav-btn:hover{background:var(--glass-hover);color:var(--text)}
+.cal-day-detail{margin-top:16px}
+
+/* ─── LEAD SCORE BADGE ─── */
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:36px;height:20px;border-radius:10px;font-size:11px;font-weight:800}
+
+/* ─── BOTTOM NAV ─── */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:var(--nav-h);
+  background:var(--bnav-glass);
+  backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-top:.5px solid var(--sep);
+  display:none;align-items:flex-start;justify-content:space-around;
+  padding:8px 8px calc(var(--safe-b) + 8px);z-index:100;
+  transition:background .35s,border-color .35s;
+}
+.bnav-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;cursor:pointer;position:relative}
+.bnav-tab svg{width:24px;height:24px;fill:none;stroke:var(--text3);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.bnav-tab .bl{font-size:10px;font-weight:500;color:var(--text3);transition:color .2s}
+.bnav-tab.on svg{stroke:var(--sky)}.bnav-tab.on .bl{color:var(--sky);font-weight:600}
+.bnav-tab .nd{position:absolute;top:1px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--coral);border:2px solid var(--bg-solid)}
+
+/* ─── MOBILE OVERLAY ─── */
+.mob-overlay{position:fixed;inset:0;background:var(--overlay);z-index:49;display:none;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.mob-overlay.open{display:block}
+
+/* ─── THEME TOGGLE ICON ─── */
+.theme-icon-light,.theme-icon-dark{display:none}
+[data-theme="light"] .theme-icon-light{display:inline}
+[data-theme="dark"] .theme-icon-dark{display:inline}
+
+/* ─── KEYBOARD SHORTCUTS HELP ─── */
+.shortcuts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shortcut-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--input-bg)}
+.shortcut-key{font-size:12px;font-weight:700;background:var(--glass);border:1px solid var(--sep2);padding:3px 8px;border-radius:6px;min-width:32px;text-align:center;font-family:monospace}
+.shortcut-desc{font-size:12px;color:var(--text2)}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:900px){
+  .sidebar{position:fixed;left:-280px;top:0;bottom:0;z-index:60;transition:left .3s cubic-bezier(.25,.46,.45,.94);width:270px;min-width:270px}
+  .sidebar.open{left:0}
+  .topbar .mob-toggle{display:flex;align-items:center;justify-content:center}
+  .bento{grid-template-columns:1fr 1fr}
+  .g2,.g3{grid-template-columns:1fr}
+  .content{padding:20px}
+  .bnav{display:flex}
+  .content{padding-bottom:calc(var(--nav-h) + var(--safe-b) + 20px)}
+  .camp .cs{gap:14px;flex-wrap:wrap}
+  .chat-wrap{height:calc(100vh - 160px - var(--nav-h))}
+  .kanban{flex-direction:column}
+  .kanban-col{min-width:100%}
+  .search-bar .kbd{display:none}
+}
+@media(max-width:500px){
+  .content{padding:16px}
+  .bento-card .bv{font-size:26px}
+  .panel-head h1{font-size:28px}
+  .topbar{padding:0 16px}
+  .fg-row{grid-template-columns:1fr}
+  .shortcuts-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="ambient"><div class="m3"></div></div>
+<div class="mob-overlay" id="mobOverlay" onclick="toggleSB()"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ════════════ COMMAND PALETTE ════════════ -->
+<div class="cmd-overlay" id="cmdOverlay">
+  <div class="cmd-box">
+    <input class="cmd-input" id="cmdInput" placeholder="Search leads, tasks, campaigns... or type a command" autocomplete="off">
+    <div class="cmd-results" id="cmdResults"></div>
+  </div>
+</div>
+
+<!-- ════════════ SIDEBAR ════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">S</div>
+    <div><div class="bname">Synergy</div><div class="bsub">Command Centre</div></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Overview</div>
+    <div class="snav active" data-panel="home"><div class="si" style="background:var(--mint-bg)">⊞</div>Dashboard</div>
+    <div class="snav" data-panel="calendar"><div class="si" style="background:var(--sky-bg)">📅</div>Calendar</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">CRM & Outreach</div>
+    <div class="snav" data-panel="pipeline"><div class="si" style="background:var(--sky-bg)">◎</div>Pipeline<span class="badge b-blue" id="badge-pipeline">42</span></div>
+    <div class="snav" data-panel="leads"><div class="si" style="background:var(--mint-bg)">◉</div>Leads & Contacts</div>
+    <div class="snav" data-panel="campaigns"><div class="si" style="background:var(--amber-bg)">✦</div>Campaigns<span class="badge b-amber">4</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Email Accounts</div>
+    <div class="snav" data-panel="email" data-filter="syn"><div class="si" style="background:var(--mint-bg)">✉</div>Synergy<span class="badge b-green">8</span></div>
+    <div class="snav" data-panel="email" data-filter="bpo"><div class="si" style="background:var(--sky-bg)">✉</div>BPO<span class="badge b-blue">3</span></div>
+    <div class="snav" data-panel="email" data-filter="enn"><div class="si" style="background:var(--violet-bg)">✉</div>Ennacle<span class="badge b-violet">5</span></div>
+    <div class="snav" data-panel="email" data-filter="agoc"><div class="si" style="background:var(--amber-bg)">✉</div>AGOC<span class="badge b-amber">2</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Productivity</div>
+    <div class="snav" data-panel="tasks"><div class="si" style="background:var(--amber-bg)">☐</div>Tasks<span class="badge b-coral" id="badge-tasks">7</span></div>
+    <div class="snav" data-panel="templates"><div class="si" style="background:var(--teal-bg)">📋</div>Templates</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Intelligence</div>
+    <div class="snav" data-panel="ai"><div class="si" style="background:var(--mint-bg)">⚡</div>AI Research</div>
+    <div class="snav" data-panel="kpis"><div class="si" style="background:var(--coral-bg)">◈</div>KPIs & Targets</div>
+    <div class="snav" data-panel="activity"><div class="si" style="background:var(--indigo-bg)">📊</div>Activity Log</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">System</div>
+    <div class="snav" data-panel="suppliers"><div class="si" style="background:var(--teal-bg)">⬡</div>GreenCore (120)</div>
+    <div class="snav" data-panel="team"><div class="si" style="background:var(--violet-bg)">👥</div>Team & Roles</div>
+    <div class="snav" data-panel="settings"><div class="si" style="background:var(--input-bg)">⚙</div>Settings</div>
+  </div>
+</aside>
+
+<!-- ════════════ MAIN ════════════ -->
+<div class="main">
+  <div class="topbar">
+    <button class="mob-toggle" onclick="toggleSB()">☰</button>
+    <div class="search-bar"><span class="si">⌕</span><input placeholder="Search leads, campaigns, tasks, emails…" id="globalSearch" onclick="openCmd()"><span class="kbd">⌘K</span></div>
+    <div class="topbar-right">
+      <div class="top-btn has-dot" title="Notifications" onclick="go('notif')" id="notifBtn"><span id="notifBadgeCount" style="font-size:11px;font-weight:700">🔔</span></div>
+      <div class="top-btn" title="Keyboard shortcuts" onclick="openM('shortcuts')">⌨</div>
+      <div class="top-btn" title="Toggle theme" onclick="toggleTheme()" id="themeBtn"><span class="theme-icon-light">🌙</span><span class="theme-icon-dark">☀️</span></div>
+      <div class="avatar" title="Goody — Admin">G</div>
+    </div>
+  </div>
+
+  <div class="content" id="scrollC">
+
+    <!-- ══════════ HOME ══════════ -->
+    <div class="panel active" id="p-home">
+      <div class="panel-head fade"><div class="greeting" id="greet">Good morning</div><h1>Dashboard</h1></div>
+      <div class="bento fade s1">
+        <div class="bento-card" onclick="go('pipeline')">
+          <div class="bi" style="background:var(--mint-bg)">◎</div>
+          <div class="bv" style="color:var(--mint)" data-count="42">0</div>
+          <div class="bl">Pipeline</div>
+          <svg class="sparkline" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--mint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,25 17,20 34,22 51,15 68,18 85,10 102,12 120,5"/><polyline fill="url(#sparkGrad1)" stroke="none" points="0,30 0,25 17,20 34,22 51,15 68,18 85,10 102,12 120,5 120,30"/><defs><linearGradient id="sparkGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--mint)" stop-opacity="0.2"/><stop offset="100%" stop-color="var(--mint)" stop-opacity="0"/></linearGradient></defs></svg>
+        </div>
+        <div class="bento-card" onclick="go('campaigns')">
+          <div class="bi" style="background:var(--sky-bg)">✦</div>
+          <div class="bv" style="color:var(--sky)" data-count="4">0</div>
+          <div class="bl">Campaigns</div>
+          <svg class="sparkline" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,28 17,25 34,20 51,22 68,15 85,18 102,8 120,10"/><polyline fill="url(#sparkGrad2)" stroke="none" points="0,30 0,28 17,25 34,20 51,22 68,15 85,18 102,8 120,10 120,30"/><defs><linearGradient id="sparkGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky)" stop-opacity="0.2"/><stop offset="100%" stop-color="var(--sky)" stop-opacity="0"/></linearGradient></defs></svg>
+        </div>
+        <div class="bento-card" onclick="go('tasks')">
+          <div class="bi" style="background:var(--amber-bg)">☐</div>
+          <div class="bv" style="color:var(--amber)" data-count="7" id="dashTaskCount">0</div>
+          <div class="bl">Tasks Due</div>
+          <svg class="sparkline" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,15 17,18 34,12 51,20 68,8 85,14 102,10 120,6"/><polyline fill="url(#sparkGrad3)" stroke="none" points="0,30 0,15 17,18 34,12 51,20 68,8 85,14 102,10 120,6 120,30"/><defs><linearGradient id="sparkGrad3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--amber)" stop-opacity="0.2"/><stop offset="100%" stop-color="var(--amber)" stop-opacity="0"/></linearGradient></defs></svg>
+        </div>
+        <div class="bento-card" onclick="go('email')">
+          <div class="bi" style="background:var(--coral-bg)">✉</div>
+          <div class="bv" style="color:var(--coral)" data-count="18">0</div>
+          <div class="bl">Unread</div>
+          <svg class="sparkline" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,20 17,15 34,22 51,10 68,16 85,8 102,14 120,5"/><polyline fill="url(#sparkGrad4)" stroke="none" points="0,30 0,20 17,15 34,22 51,10 68,16 85,8 102,14 120,5 120,30"/><defs><linearGradient id="sparkGrad4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--coral)" stop-opacity="0.2"/><stop offset="100%" stop-color="var(--coral)" stop-opacity="0"/></linearGradient></defs></svg>
+        </div>
+      </div>
+
+      <!-- Dashboard Donut Chart -->
+      <div class="g2 fade s2" style="margin-bottom:24px">
+        <div>
+          <div class="sec-label">Pipeline Breakdown</div>
+          <div class="gc" style="display:flex;align-items:center;gap:24px;padding:24px">
+            <svg width="120" height="120" viewBox="0 0 120 120" id="donutChart">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--input-bg)" stroke-width="12"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--coral)" stroke-width="12" stroke-dasharray="94.2 220" stroke-dashoffset="0" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--amber)" stroke-width="12" stroke-dasharray="62.8 251.3" stroke-dashoffset="-94.2" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--sky)" stroke-width="12" stroke-dasharray="47.1 266.8" stroke-dashoffset="-157" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--mint)" stroke-width="12" stroke-dasharray="31.4 282.7" stroke-dashoffset="-204.1" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <text x="60" y="56" text-anchor="middle" fill="var(--text)" font-size="24" font-weight="800">42</text>
+              <text x="60" y="72" text-anchor="middle" fill="var(--text3)" font-size="10" font-weight="500">LEADS</text>
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1">
+              <div style="display:flex;align-items:center;gap:8px"><div class="dot" style="background:var(--coral)"></div><span style="font-size:13px;flex:1">Hot Leads</span><span style="font-size:13px;font-weight:700">6</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><div class="dot" style="background:var(--amber)"></div><span style="font-size:13px;flex:1">Warm</span><span style="font-size:13px;font-weight:700">4</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><div class="dot" style="background:var(--sky)"></div><span style="font-size:13px;flex:1">Contacted</span><span style="font-size:13px;font-weight:700">3</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><div class="dot" style="background:var(--mint)"></div><span style="font-size:13px;flex:1">New</span><span style="font-size:13px;font-weight:700">29</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Connected Email Accounts</div>
+          <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--mint-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">Synergy <span class="domain-tag d-syn">SYN</span></div><div class="ae">goody@synergy.lk</div></div><div class="ab" style="background:var(--mint)">8</div></div>
+          <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--sky-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">BPO <span class="domain-tag d-bpo">BPO</span></div><div class="ae">goody@bposervices.lk</div></div><div class="ab" style="background:var(--sky)">3</div></div>
+          <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--violet-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">Ennacle <span class="domain-tag d-enn">ENN</span></div><div class="ae">goody@ennacle.com</div></div><div class="ab" style="background:var(--violet)">5</div></div>
+          <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--amber-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">AGOC <span class="domain-tag d-agoc">AGOC</span></div><div class="ae">goody@agoc.lk</div></div><div class="ab" style="background:var(--amber)">2</div></div>
+        </div>
+      </div>
+
+      <div class="g2 fade s3">
+        <div>
+          <div class="sec-label">Recent Activity</div>
+          <div class="tl" id="dashActivity">
+            <div class="tl-item"><div class="td" style="border-color:var(--mint)"></div><div class="tc"><div class="tt">Email sent to Stockland</div><div class="tm"><span class="domain-tag d-syn">SYN</span> Service Pitch</div><div class="tw">2h ago</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--sky)"></div><div class="tc"><div class="tt">Follow-up scheduled: BDO AU</div><div class="tm"><span class="pill p-sky">Accounting Firm</span> 3-day follow-up</div><div class="tw">5h ago</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--violet)"></div><div class="tc"><div class="tt">New lead: Keppel Corporation</div><div class="tm">Singapore · Corporate <span class="pill p-coral">Hot</span></div><div class="tw">Yesterday</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--teal)"></div><div class="tc"><div class="tt">AI: CSRD deadlines updated</div><div class="tm"><span class="celeb">Auto-detected</span> Regulatory change</div><div class="tw">Yesterday</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Upcoming Tasks</div>
+          <div class="gc" style="padding:8px 18px" id="dashTasks"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CALENDAR ══════════ -->
+    <div class="panel" id="p-calendar">
+      <div class="panel-head"><h1>Calendar</h1><div class="sub">Tasks, follow-ups & campaign schedule</div></div>
+      <div class="gc">
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="calNav(-1)">◀</button>
+          <h2 id="calTitle"></h2>
+          <button class="cal-nav-btn" onclick="calNav(1)">▶</button>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-head">Sun</div><div class="cal-head">Mon</div><div class="cal-head">Tue</div><div class="cal-head">Wed</div><div class="cal-head">Thu</div><div class="cal-head">Fri</div><div class="cal-head">Sat</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <div class="cal-day-detail gc" id="calDetail" style="display:none">
+        <div class="sec-label" id="calDetailTitle"></div>
+        <div id="calDetailItems"></div>
+      </div>
+    </div>
+
+    <!-- ══════════ PIPELINE (KANBAN) ══════════ -->
+    <div class="panel" id="p-pipeline">
+      <div class="panel-head panel-head-row">
+        <div><h1>Pipeline</h1><div class="sub">42 active leads · Drag to move stages</div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-g btn-sm" onclick="exportData('pipeline')">Export CSV</button>
+          <button class="btn btn-p btn-sm" onclick="openM('newLead')">+ Add Lead</button>
+        </div>
+      </div>
+      <div class="chips"><div class="chip on" data-filter="all">All</div><div class="chip" data-filter="esg">ESG Outreach</div><div class="chip" data-filter="greencore">GreenCore</div><div class="chip" data-filter="drone">Drone Survey</div><div class="chip" data-filter="york">York Street</div><div class="chip" data-filter="cep">CEP</div></div>
+      <div class="kanban" id="kanbanBoard"></div>
+    </div>
+
+    <!-- ══════════ LEADS ══════════ -->
+    <div class="panel" id="p-leads">
+      <div class="panel-head panel-head-row">
+        <div><h1>Leads & Contacts</h1><div class="sub">Corporate · Accounting · Software · Suppliers</div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-g btn-sm" onclick="exportData('leads')">Export CSV</button>
+          <button class="btn btn-p btn-sm" onclick="openM('newLead')">+ New Lead</button>
+        </div>
+      </div>
+      <div class="chips" id="leadChips"><div class="chip on" data-filter="all">All</div><div class="chip" data-filter="corporate">Corporate (27)</div><div class="chip" data-filter="accounting">Accounting (15)</div><div class="chip" data-filter="software">Software (8)</div><div class="chip" data-filter="greencore">GreenCore (120)</div></div>
+      <div class="tbl-wrap"><table class="tbl" id="leadsTable"><thead><tr><th onclick="sortTable('leadsTable',0)"># <span class="sort-icon">▼</span></th><th onclick="sortTable('leadsTable',1)">Company <span class="sort-icon">▼</span></th><th onclick="sortTable('leadsTable',2)">Country <span class="sort-icon">▼</span></th><th onclick="sortTable('leadsTable',3)">Sector <span class="sort-icon">▼</span></th><th>Contact</th><th>Temp</th><th onclick="sortTable('leadsTable',6)">Score <span class="sort-icon">▼</span></th><th>Status</th><th></th></tr></thead><tbody id="leadsBody"></tbody></table></div>
+    </div>
+
+    <!-- ══════════ CAMPAIGNS ══════════ -->
+    <div class="panel" id="p-campaigns">
+      <div class="panel-head panel-head-row"><div><h1>Campaigns</h1><div class="sub">Project-based email sequences</div></div><button class="btn btn-p btn-sm">+ New Campaign</button></div>
+      <div class="chips"><div class="chip on">All</div><div class="chip"><span class="domain-tag d-syn" style="background:none;padding:0">SYN</span></div><div class="chip"><span class="domain-tag d-bpo" style="background:none;padding:0">BPO</span></div><div class="chip"><span class="domain-tag d-enn" style="background:none;padding:0">ENN</span></div><div class="chip"><span class="domain-tag d-agoc" style="background:none;padding:0">AGOC</span></div></div>
+      <div class="g2" id="campaignGrid">
+        <div class="camp"><div class="ci" style="background:var(--mint)"></div><div class="ch"><div><div class="cn">Service Pitch — Corporate ESG</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-syn">SYN</span><span class="pill p-mint">3 variants</span></div></div></div><div class="cd">Direct outreach to corporate ESG decision-makers in-scope under ASRS/ISSB</div><div class="cs"><div><div class="cs-v" style="color:var(--mint)">27</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--mint)"></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--sky)"></div><div class="ch"><div><div class="cn">Accounting Firm Partnership</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-syn">SYN</span><span class="pill p-sky">2 variants</span></div></div></div><div class="cd">White-label ESG reporting with mid-tier accounting firms</div><div class="cs"><div><div class="cs-v" style="color:var(--sky)">15</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--sky)"></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--amber)"></div><div class="ch"><div><div class="cn">Supply Chain SME</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-bpo">BPO</span><span class="pill p-amber">Draft</span></div></div></div><div class="cd">ESG reporting for supply chain SMEs facing buyer data demands</div><div class="cs"><div><div class="cs-v" style="color:var(--amber)">0</div><div class="cs-l">Leads</div></div><div><div class="cs-v">—</div><div class="cs-l">Sent</div></div><div><div class="cs-v">—</div><div class="cs-l">Opens</div></div><div><div class="cs-v">—</div><div class="cs-l">Replies</div></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--violet)"></div><div class="ch"><div><div class="cn">ESG Software Partnership</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-enn">ENN</span><span class="pill p-violet">1 variant</span></div></div></div><div class="cd">Managed services partnerships with ESG platforms</div><div class="cs"><div><div class="cs-v" style="color:var(--violet)">8</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--violet)"></div></div></div>
+      </div>
+      <div class="sec-label">Sequence Logic</div>
+      <div class="gc" style="display:flex;justify-content:space-between;align-items:center;text-align:center;padding:22px 16px;flex-wrap:wrap;gap:8px">
+        <div><div style="font-size:22px;margin-bottom:4px">✉</div><div style="font-size:11px;font-weight:600">Send</div><div style="font-size:9px;color:var(--text3)">Day 0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">🔄</div><div style="font-size:11px;font-weight:600">Follow 1</div><div style="font-size:9px;color:var(--text3)">Day 3</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">🔔</div><div style="font-size:11px;font-weight:600">Follow 2</div><div style="font-size:9px;color:var(--text3)">Day 7</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">⚡</div><div style="font-size:11px;font-weight:600">Nudge</div><div style="font-size:9px;color:var(--text3)">Day 14</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">📦</div><div style="font-size:11px;font-weight:600">Archive</div><div style="font-size:9px;color:var(--text3)">Day 21</div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ EMAIL ══════════ -->
+    <div class="panel" id="p-email">
+      <div class="panel-head panel-head-row"><div><h1>Email</h1><div class="sub">18 unread across 4 accounts</div></div><button class="btn btn-p btn-sm" onclick="openM('compose')">✉ Compose</button></div>
+      <div class="chips" id="emailChips"><div class="chip on" data-filter="all">All (18)</div><div class="chip" data-filter="syn"><span class="domain-tag d-syn" style="background:none;padding:0">Synergy</span> 8</div><div class="chip" data-filter="bpo"><span class="domain-tag d-bpo" style="background:none;padding:0">BPO</span> 3</div><div class="chip" data-filter="enn"><span class="domain-tag d-enn" style="background:none;padding:0">Ennacle</span> 5</div><div class="chip" data-filter="agoc"><span class="domain-tag d-agoc" style="background:none;padding:0">AGOC</span> 2</div></div>
+      <div class="sec-label">Unread</div>
+      <div class="gc" style="padding:4px 18px" id="emailList">
+        <div class="lead-r" data-domain="syn" onclick="previewEmail(this)"><div class="lead-av" style="background:linear-gradient(135deg,var(--mint),var(--teal));font-size:13px">G</div><div style="flex:1"><div class="ln">Greenomy Partnerships</div><div class="ld">Re: Implementation partner — CSRD platform</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">10:32</div><span class="domain-tag d-syn" style="margin-top:2px;display:inline-block">SYN</span></div></div>
+        <div class="lead-r" data-domain="syn" onclick="previewEmail(this)"><div class="lead-av" style="background:linear-gradient(135deg,var(--sky),var(--indigo));font-size:13px">B</div><div style="flex:1"><div class="ln">BDO Sustainability</div><div class="ld">White-label ESG — initial interest</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">9:15</div><span class="domain-tag d-syn" style="margin-top:2px;display:inline-block">SYN</span></div></div>
+        <div class="lead-r" data-domain="enn" onclick="previewEmail(this)"><div class="lead-av" style="background:linear-gradient(135deg,var(--violet),var(--pink));font-size:13px">P</div><div style="flex:1"><div class="ln">Pulsora Team</div><div class="ld">Enterprise partner program — next steps</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">8:41</div><span class="domain-tag d-enn" style="margin-top:2px;display:inline-block">ENN</span></div></div>
+        <div class="lead-r" data-domain="bpo" onclick="previewEmail(this)"><div class="lead-av" style="background:linear-gradient(135deg,var(--sky),var(--teal));font-size:13px">M</div><div style="flex:1"><div class="ln">Meridian BPO Client</div><div class="ld">Monthly ops review — data request</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">8:02</div><span class="domain-tag d-bpo" style="margin-top:2px;display:inline-block">BPO</span></div></div>
+        <div class="lead-r" data-domain="agoc" onclick="previewEmail(this)"><div class="lead-av" style="background:linear-gradient(135deg,var(--amber),var(--coral));font-size:13px">A</div><div style="flex:1"><div class="ln">AGOC Project Director</div><div class="ld">CEP Section 4 — revised programme</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">7:48</div><span class="domain-tag d-agoc" style="margin-top:2px;display:inline-block">AGOC</span></div></div>
+      </div>
+      <!-- Email Preview Pane -->
+      <div class="gc" id="emailPreview" style="display:none;margin-top:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div><div style="font-size:18px;font-weight:700" id="epSubject"></div><div style="font-size:12px;color:var(--text2);margin-top:2px" id="epFrom"></div></div>
+          <div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="document.getElementById('emailPreview').style.display='none'">Close</button><button class="btn btn-p btn-sm" onclick="openM('compose')">Reply</button></div>
+        </div>
+        <div style="font-size:14px;line-height:1.7;color:var(--text2)" id="epBody"></div>
+      </div>
+      <div class="sec-label">Earlier</div>
+      <div class="gc" style="padding:4px 18px">
+        <div class="lead-r" style="opacity:.5" data-domain="syn"><div class="lead-av" style="background:var(--text3);font-size:13px">R</div><div style="flex:1"><div class="ln">RSM Australia</div><div class="ld">Out of office auto-reply</div></div><div style="font-size:11px;color:var(--text3);flex-shrink:0">Yest.</div></div>
+        <div class="lead-r" style="opacity:.5" data-domain="agoc"><div class="lead-av" style="background:var(--text3);font-size:13px">C</div><div style="flex:1"><div class="ln">CEP Progress Review</div><div class="ld">Section 3 handover notes attached</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">Yest.</div><span class="domain-tag d-agoc" style="margin-top:2px;display:inline-block">AGOC</span></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ TASKS ══════════ -->
+    <div class="panel" id="p-tasks">
+      <div class="panel-head panel-head-row"><div><h1>Tasks</h1><div class="sub" id="taskSub">7 open · 3 overdue</div></div><button class="btn btn-p btn-sm" onclick="openM('newTask')">+ New Task</button></div>
+      <div class="chips" id="taskChips"><div class="chip on" data-filter="all">All Open</div><div class="chip" data-filter="overdue">Overdue</div><div class="chip" data-filter="today">Today</div><div class="chip" data-filter="week">This Week</div><div class="chip" data-filter="done">Completed</div></div>
+      <div class="gc" style="padding:6px 18px" id="taskList"></div>
+    </div>
+
+    <!-- ══════════ TEMPLATES ══════════ -->
+    <div class="panel" id="p-templates">
+      <div class="panel-head panel-head-row"><div><h1>Templates</h1><div class="sub">Campaign-ready email templates</div></div><button class="btn btn-p btn-sm">+ New Template</button></div>
+      <div class="chips"><div class="chip on">Service Pitch</div><div class="chip">Accounting Firms</div><div class="chip">Supply Chain</div><div class="chip">Software</div><div class="chip">Follow-ups</div></div>
+      <div class="g2">
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Authority-led</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> Your Team Sets the Strategy — We Handle the ESG Heavy Lift</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], Mandatory sustainability reporting is here — and the reality is that the most time-consuming work isn't setting the strategy…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm" onclick="showToast('Template preview opened','📄')">Preview</button><button class="btn btn-p btn-sm" onclick="useTemplate('authority')">Use</button></div></div>
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Problem-first</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> Scope 3, Materiality KPIs, ISSB — Without Hiring a Team</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], If your team is like the companies we speak with, the sustainability strategy is clear — but the execution bottleneck is real…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm" onclick="showToast('Template preview opened','📄')">Preview</button><button class="btn btn-p btn-sm" onclick="useTemplate('problem')">Use</button></div></div>
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Concise & Direct</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> We Do the Hard Part of ESG Reporting — So Your Team Doesn't Have To</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], Synergy Global Alliance handles the most technically complex aspects of sustainability reporting…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm" onclick="showToast('Template preview opened','📄')">Preview</button><button class="btn btn-p btn-sm" onclick="useTemplate('concise')">Use</button></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ AI RESEARCH ══════════ -->
+    <div class="panel" id="p-ai">
+      <div class="panel-head" style="padding-bottom:4px"><h1>AI Research ⚡</h1><div class="sub">ESG intelligence, lead enrichment, regulatory monitoring</div></div>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button class="btn btn-g btn-sm" onclick="aiQuick('What are the latest ASRS/ISSB regulatory changes?')">Regulatory Updates</button>
+        <button class="btn btn-g btn-sm" onclick="aiQuick('Analyze Stockland ESG performance')">Lead Research</button>
+        <button class="btn btn-g btn-sm" onclick="aiQuick('Compare ESG software platforms for partnership')">Competitive Intel</button>
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="cb-wrap ai"><div class="cb-av">⚡</div><div class="cb">Hello Goody. I can help with ESG regulatory updates (ASRS, ISSB, CSRD), lead research and enrichment, competitive intelligence on ESG providers, GreenCore supplier due diligence, and market analysis. What shall we explore?</div></div>
+        </div>
+        <div class="chat-in"><input placeholder="Research anything… (or press / for commands)" id="chatIn" onkeydown="if(event.key==='Enter')sendC()"><button class="chat-send" onclick="sendC()">↑</button></div>
+      </div>
+    </div>
+
+    <!-- ══════════ KPIs ══════════ -->
+    <div class="panel" id="p-kpis">
+      <div class="panel-head"><h1>KPIs & Targets</h1><div class="sub">Revenue · Outreach · Performance</div></div>
+      <div class="sec-label">Revenue Targets</div>
+      <div class="bento">
+        <div class="bento-card"><div class="bi" style="background:var(--mint-bg)">$</div><div class="bv" style="color:var(--mint)" data-count="175">0</div><div class="bl">Year 1 · 5 clients (K)</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--sky-bg)">$</div><div class="bv" style="color:var(--sky)" data-count="350">0</div><div class="bl">Year 2 · 10 clients (K)</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--violet-bg)">$</div><div class="bv" style="color:var(--violet)" data-count="700">0</div><div class="bl">Year 3+ · 20 clients (K)</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--amber-bg)">$</div><div class="bv" style="color:var(--amber)" data-count="0">0</div><div class="bl">Current MRR</div></div>
+      </div>
+      <div class="sec-label">Outreach KPIs</div>
+      <div class="g3">
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Emails Sent</div><div style="font-size:36px;font-weight:800;color:var(--sky);letter-spacing:-1px">0</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 50/week</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--sky)"></div></div></div>
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Response Rate</div><div style="font-size:36px;font-weight:800;color:var(--mint);letter-spacing:-1px">--</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 15%</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--mint)"></div></div></div>
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Meetings Booked</div><div style="font-size:36px;font-weight:800;color:var(--violet);letter-spacing:-1px">0</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 5/month</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--violet)"></div></div></div>
+      </div>
+      <div class="sec-label">Conversion Funnel</div>
+      <div class="gc" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;text-align:center">
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Leads</div><div style="font-size:28px;font-weight:800">42</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Sent</div><div style="font-size:28px;font-weight:800;color:var(--sky)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Responded</div><div style="font-size:28px;font-weight:800;color:var(--amber)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Meetings</div><div style="font-size:28px;font-weight:800;color:var(--violet)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Won</div><div style="font-size:28px;font-weight:800;color:var(--mint)">0</div></div>
+      </div>
+      <!-- Weekly Bar Chart -->
+      <div class="sec-label">Weekly Email Activity</div>
+      <div class="gc" style="padding:20px 22px">
+        <svg viewBox="0 0 400 120" width="100%" preserveAspectRatio="xMidYMid meet" id="weeklyChart">
+          <line x1="0" y1="100" x2="400" y2="100" stroke="var(--sep2)" stroke-width="1"/>
+          <line x1="0" y1="75" x2="400" y2="75" stroke="var(--sep)" stroke-width="0.5" stroke-dasharray="4"/>
+          <line x1="0" y1="50" x2="400" y2="50" stroke="var(--sep)" stroke-width="0.5" stroke-dasharray="4"/>
+          <line x1="0" y1="25" x2="400" y2="25" stroke="var(--sep)" stroke-width="0.5" stroke-dasharray="4"/>
+          <rect x="20" y="60" width="30" height="40" rx="4" fill="var(--sky)" opacity="0.7"><animate attributeName="height" from="0" to="40" dur="0.5s"/><animate attributeName="y" from="100" to="60" dur="0.5s"/></rect>
+          <rect x="75" y="45" width="30" height="55" rx="4" fill="var(--sky)" opacity="0.7"><animate attributeName="height" from="0" to="55" dur="0.5s"/><animate attributeName="y" from="100" to="45" dur="0.5s"/></rect>
+          <rect x="130" y="70" width="30" height="30" rx="4" fill="var(--sky)" opacity="0.7"><animate attributeName="height" from="0" to="30" dur="0.5s"/><animate attributeName="y" from="100" to="70" dur="0.5s"/></rect>
+          <rect x="185" y="35" width="30" height="65" rx="4" fill="var(--sky)" opacity="0.7"><animate attributeName="height" from="0" to="65" dur="0.5s"/><animate attributeName="y" from="100" to="35" dur="0.5s"/></rect>
+          <rect x="240" y="50" width="30" height="50" rx="4" fill="var(--sky)" opacity="0.7"><animate attributeName="height" from="0" to="50" dur="0.5s"/><animate attributeName="y" from="100" to="50" dur="0.5s"/></rect>
+          <rect x="295" y="20" width="30" height="80" rx="4" fill="var(--mint)" opacity="0.8"><animate attributeName="height" from="0" to="80" dur="0.5s"/><animate attributeName="y" from="100" to="20" dur="0.5s"/></rect>
+          <rect x="350" y="80" width="30" height="20" rx="4" fill="var(--sky)" opacity="0.4"><animate attributeName="height" from="0" to="20" dur="0.5s"/><animate attributeName="y" from="100" to="80" dur="0.5s"/></rect>
+          <text x="35" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Mon</text>
+          <text x="90" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Tue</text>
+          <text x="145" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Wed</text>
+          <text x="200" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Thu</text>
+          <text x="255" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Fri</text>
+          <text x="310" y="115" text-anchor="middle" fill="var(--mint)" font-size="9" font-weight="700">Sat</text>
+          <text x="365" y="115" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="500">Sun</text>
+        </svg>
+      </div>
+      <div class="sec-label">Milestones</div>
+      <div class="gc" style="padding:8px 18px">
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done');this.closest('.task-r').classList.toggle('completed')"></div><div><div class="tn">GRI Professional Certification</div><div class="tmeta"><span class="pill p-amber">In Progress</span></div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done');this.closest('.task-r').classList.toggle('completed')"></div><div><div class="tn">CFA ESG Certificate</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done');this.closest('.task-r').classList.toggle('completed')"></div><div><div class="tn">First pilot client secured</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done');this.closest('.task-r').classList.toggle('completed')"></div><div><div class="tn">ESG readiness tool live</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ ACTIVITY LOG ══════════ -->
+    <div class="panel" id="p-activity">
+      <div class="panel-head"><h1>Activity Log</h1><div class="sub">All actions and events</div></div>
+      <div class="chips" id="activityChips"><div class="chip on" data-filter="all">All</div><div class="chip" data-filter="lead">Leads</div><div class="chip" data-filter="task">Tasks</div><div class="chip" data-filter="email">Email</div><div class="chip" data-filter="system">System</div></div>
+      <div class="tl" id="activityLog"></div>
+    </div>
+
+    <!-- ══════════ SUPPLIERS ══════════ -->
+    <div class="panel" id="p-suppliers">
+      <div class="panel-head panel-head-row">
+        <div><h1>GreenCore Suppliers</h1><div class="sub">120 suppliers · 96 emails · 6 sectors</div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-g btn-sm" onclick="exportData('suppliers')">Export CSV</button>
+          <button class="btn btn-p btn-sm">+ Add</button>
+        </div>
+      </div>
+      <div class="chips" id="supplierChips"><div class="chip on" data-filter="all">All (120)</div><div class="chip" data-filter="agriculture">Agriculture</div><div class="chip" data-filter="renewable">Renewable Energy</div><div class="chip" data-filter="wastewater">Wastewater</div><div class="chip" data-filter="textile">Textile</div><div class="chip" data-filter="transport">Transport</div><div class="chip" data-filter="climate">Climate Assets</div></div>
+      <div class="tbl-wrap"><table class="tbl" id="supplierTable"><thead><tr><th>#</th><th onclick="sortTable('supplierTable',1)">Supplier <span class="sort-icon">▼</span></th><th>Sector</th><th onclick="sortTable('supplierTable',3)">Country <span class="sort-icon">▼</span></th><th>Tier</th><th>Email</th><th></th></tr></thead><tbody>
+        <tr data-sector="agriculture"><td>1</td><td><strong>CropX Technologies</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Israel</td><td><span class="pill p-sky">Tier 1</span></td><td>sales@cropx.com</td><td><button class="btn btn-g btn-sm" onclick="openM('compose');showToast('Compose opened for CropX','✉')">✉</button></td></tr>
+        <tr data-sector="agriculture"><td>2</td><td><strong>Netafim</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Israel</td><td><span class="pill p-sky">Tier 1</span></td><td style="color:var(--text3)">Website form</td><td><button class="btn btn-g btn-sm">🔗</button></td></tr>
+        <tr data-sector="agriculture"><td>3</td><td><strong>Aranet</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Latvia</td><td><span class="pill p-sky">Tier 1</span></td><td>salesemea@saftehnika.com</td><td><button class="btn btn-g btn-sm" onclick="openM('compose')">✉</button></td></tr>
+        <tr data-sector="agriculture"><td>4</td><td><strong>Toro Irrigation</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>USA</td><td><span class="pill p-amber">Tier 2</span></td><td>CRC@toro.com</td><td><button class="btn btn-g btn-sm" onclick="openM('compose')">✉</button></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- ══════════ TEAM ══════════ -->
+    <div class="panel" id="p-team">
+      <div class="panel-head panel-head-row"><div><h1>Team & Roles</h1><div class="sub">User management & access control</div></div><button class="btn btn-p btn-sm" onclick="openM('addUser')">+ Invite</button></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>User</th><th>Email</th><th>Role</th><th>Domains</th><th>Last Active</th></tr></thead><tbody>
+        <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:11px">G</div><strong>Goody</strong></div></td><td>goody@synergy.lk</td><td><span class="role r-admin">Admin</span></td><td><span class="domain-tag d-syn">SYN</span> <span class="domain-tag d-bpo">BPO</span> <span class="domain-tag d-enn">ENN</span> <span class="domain-tag d-agoc">AGOC</span></td><td style="font-size:11px;color:var(--text2)">Now</td></tr>
+        <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:var(--input-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text3)">A</div><span style="color:var(--text2)">Analyst (Invited)</span></div></td><td style="color:var(--text3)">analyst@synergy.lk</td><td><span class="role r-analyst">Analyst</span></td><td><span class="domain-tag d-syn">SYN</span></td><td style="font-size:11px;color:var(--text3)">Pending</td></tr>
+      </tbody></table></div>
+      <div class="sec-label">Role Permissions</div>
+      <div class="g2">
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-admin">Admin</span> Full Access</div><div style="font-size:12px;color:var(--text2);line-height:1.7">All email accounts, campaigns, leads, team management, settings, KPIs, AI research, billing</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-mgr">Manager</span> Operations</div><div style="font-size:12px;color:var(--text2);line-height:1.7">Assigned emails, campaign execution, lead management, task assignment, reporting</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-analyst">Analyst</span> Research</div><div style="font-size:12px;color:var(--text2);line-height:1.7">AI research, lead research, GreenCore (view), KPI dashboards (view), own tasks</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-viewer">Viewer</span> Read Only</div><div style="font-size:12px;color:var(--text2);line-height:1.7">Dashboard view, pipeline view, KPIs. No email, editing, or campaign access</div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ SETTINGS ══════════ -->
+    <div class="panel" id="p-settings">
+      <div class="panel-head"><h1>Settings</h1><div class="sub">Configuration & integrations</div></div>
+      <div class="g2">
+        <div class="gc">
+          <div style="font-size:16px;font-weight:700;margin-bottom:14px">Email Accounts</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-syn">SYN</span><span style="font-size:13px">goody@synergy.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-bpo">BPO</span><span style="font-size:13px">goody@bposervices.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-enn">ENN</span><span style="font-size:13px">goody@ennacle.com</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-agoc">AGOC</span><span style="font-size:13px">goody@agoc.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+          </div>
+        </div>
+        <div class="gc">
+          <div style="font-size:16px;font-weight:700;margin-bottom:14px">Integrations</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Microsoft Outlook (OAuth)</span><span class="pill p-mint">Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">LinkedIn Sales Navigator</span><span class="pill p-dim">Not Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Google Calendar</span><span class="pill p-dim">Not Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Claude API (AI Research)</span><span class="pill p-amber" id="claudeApiStatus">Setup Pending</span></div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="fg"><label>Claude API Key</label><input type="password" id="claudeApiKey" placeholder="sk-ant-..." value="" style="font-family:monospace"></div>
+            <button class="btn btn-p btn-sm" onclick="saveApiKey()">Save API Key</button>
+          </div>
+        </div>
+      </div>
+      <div class="sec-label">Data Management</div>
+      <div class="gc">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-g btn-sm" onclick="exportData('all')">Export All Data (JSON)</button>
+          <button class="btn btn-g btn-sm" onclick="showToast('Data cleared and reset','🗑')">Reset Demo Data</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ NOTIFICATIONS ══════════ -->
+    <div class="panel" id="p-notif">
+      <div class="panel-head"><h1>Notifications</h1><div class="sub" id="notifSub">5 new</div></div>
+      <div class="gc" style="padding:4px 18px" id="notifList">
+        <div class="lead-r"><div class="lead-av" style="background:var(--coral-bg);color:var(--coral);font-size:14px">🔔</div><div style="flex:1"><div class="ln">Follow-up overdue: QIC Limited</div><div class="ld">Was due 2 days ago · ESG Outreach</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--mint-bg);color:var(--mint);font-size:14px">✉</div><div style="flex:1"><div class="ln">Greenomy responded</div><div class="ld">10:32 AM · Synergy inbox</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--teal-bg);color:var(--teal);font-size:14px">⚡</div><div style="flex:1"><div class="ln">ASRS filing guidance published</div><div class="ld">Auto-detected regulatory update</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--amber-bg);color:var(--amber);font-size:14px">📊</div><div style="flex:1"><div class="ln">Weekly KPI target: 0/50 emails sent</div><div class="ld">You're behind on outreach this week</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--violet-bg);color:var(--violet);font-size:14px">👤</div><div style="flex:1"><div class="ln">New lead score alert: Stockland (85)</div><div class="ld">Score increased from engagement signals</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════ BOTTOM NAV ══════ -->
+<div class="bnav">
+  <div class="bnav-tab on" data-panel="home"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg><span class="bl">Home</span></div>
+  <div class="bnav-tab" data-panel="pipeline"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span class="bl">Pipeline</span><div class="nd"></div></div>
+  <div class="bnav-tab" data-panel="campaigns"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h4"/></svg><span class="bl">Campaigns</span></div>
+  <div class="bnav-tab" data-panel="tasks"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 5-5"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span class="bl">Tasks</span></div>
+  <div class="bnav-tab" data-panel="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span class="bl">AI</span></div>
+</div>
+
+<!-- ══════ MODALS ══════ -->
+<div class="modal-bg" id="m-newLead"><div class="modal"><h2>Add New Lead</h2>
+  <div class="fg-row"><div class="fg"><label>Company</label><input placeholder="e.g. Stockland" id="nlCompany"></div><div class="fg"><label>Country</label><select id="nlCountry"><option>Australia</option><option>Singapore</option><option>UK</option><option>Hong Kong</option><option>Sri Lanka</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Type</label><select id="nlType"><option>Corporate</option><option>Accounting Firm</option><option>Software Partner</option><option>Supply Chain SME</option></select></div><div class="fg"><label>Sector</label><input placeholder="e.g. Real Estate" id="nlSector"></div></div>
+  <div class="fg-row"><div class="fg"><label>Email</label><input placeholder="contact@company.com" id="nlEmail"></div><div class="fg"><label>Contact Name</label><input placeholder="Full name" id="nlContact"></div></div>
+  <div class="fg-row"><div class="fg"><label>Temperature</label><select id="nlTemp"><option>Hot</option><option>Warm</option><option>Cold</option></select></div><div class="fg"><label>Priority</label><select id="nlPriority"><option>A</option><option>B</option><option>C</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Project</label><select id="nlProject"><option>ESG Outreach</option><option>GreenCore</option><option>Drone Survey</option><option>York Street</option><option>CEP</option></select></div><div class="fg"><label>Send From</label><select><option>goody@synergy.lk</option><option>goody@bposervices.lk</option><option>goody@ennacle.com</option><option>goody@agoc.lk</option></select></div></div>
+  <div class="fg"><label>Notes</label><textarea placeholder="Notes…" id="nlNotes"></textarea></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('newLead')">Cancel</button><button class="btn btn-p" onclick="saveLead()">Save Lead</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-compose"><div class="modal"><h2>Compose Email</h2>
+  <div class="fg"><label>From</label><select id="composeFrom"><option>goody@synergy.lk (Synergy)</option><option>goody@bposervices.lk (BPO)</option><option>goody@ennacle.com (Ennacle)</option><option>goody@agoc.lk (AGOC)</option></select></div>
+  <div class="fg"><label>To</label><input placeholder="recipient@company.com" id="composeTo"></div>
+  <div class="fg"><label>Subject</label><input placeholder="Subject line" id="composeSubject"></div>
+  <div class="fg"><label>Template</label><select id="composeTemplate" onchange="loadTemplate()"><option value="">— None —</option><option value="authority">Service Pitch: Authority-led</option><option value="problem">Service Pitch: Problem-first</option><option value="concise">Service Pitch: Concise</option><option value="accounting">Accounting Firm Partnership</option><option value="software">Software Partnership</option></select></div>
+  <div class="fg"><label>Body <span id="charCount" style="float:right;color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">0 chars</span></label><textarea style="min-height:140px" placeholder="Write your email…" id="composeBody" oninput="updateCharCount()"></textarea></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('compose')">Cancel</button><button class="btn btn-g" onclick="showToast('Email scheduled','📅');closeM('compose')">Schedule</button><button class="btn btn-p" onclick="sendEmail()">Send ✉</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-newTask"><div class="modal"><h2>New Task</h2>
+  <div class="fg"><label>Title</label><input placeholder="What needs to be done?" id="ntTitle"></div>
+  <div class="fg-row"><div class="fg"><label>Project</label><select id="ntProject"><option>ESG Outreach</option><option>GreenCore</option><option>CEP</option><option>Strategy</option><option>Credentials</option></select></div><div class="fg"><label>Assign To</label><select><option>Goody (Admin)</option><option>Analyst</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Due Date</label><input type="date" id="ntDue"></div><div class="fg"><label>Priority</label><select id="ntPriority"><option>High</option><option>Medium</option><option>Normal</option></select></div></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('newTask')">Cancel</button><button class="btn btn-p" onclick="saveTask()">Create</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-addUser"><div class="modal"><h2>Invite User</h2>
+  <div class="fg-row"><div class="fg"><label>Name</label><input placeholder="Full name"></div><div class="fg"><label>Email</label><input placeholder="user@domain.com"></div></div>
+  <div class="fg-row"><div class="fg"><label>Role</label><select><option>Admin</option><option>Manager</option><option>Analyst</option><option>Viewer</option></select></div><div class="fg"><label>Domain Access</label><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox" checked> Synergy</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> BPO</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> Ennacle</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> AGOC</label></div></div></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('addUser')">Cancel</button><button class="btn btn-p" onclick="closeM('addUser');showToast('Invite sent','📧')">Send Invite</button></div>
+</div></div>
+
+<!-- Keyboard Shortcuts Modal -->
+<div class="modal-bg" id="m-shortcuts"><div class="modal" style="max-width:600px"><h2>Keyboard Shortcuts</h2>
+  <div class="shortcuts-grid">
+    <div class="shortcut-item"><span class="shortcut-key">⌘K</span><span class="shortcut-desc">Open search / command palette</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">N</span><span class="shortcut-desc">New lead</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">T</span><span class="shortcut-desc">New task</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">E</span><span class="shortcut-desc">Compose email</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">1</span><span class="shortcut-desc">Dashboard</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">2</span><span class="shortcut-desc">Pipeline</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">3</span><span class="shortcut-desc">Leads</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">4</span><span class="shortcut-desc">Campaigns</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">5</span><span class="shortcut-desc">Tasks</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">6</span><span class="shortcut-desc">AI Research</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">?</span><span class="shortcut-desc">This help</span></div>
+    <div class="shortcut-item"><span class="shortcut-key">Esc</span><span class="shortcut-desc">Close modal/overlay</span></div>
+  </div>
+  <div style="margin-top:20px;text-align:right"><button class="btn btn-g" onclick="closeM('shortcuts')">Close</button></div>
+</div></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// SYNERGY COMMAND CENTRE v3 — APPLICATION LOGIC
+// ═══════════════════════════════════════════════════════
+
+// ─── DATA STORE (localStorage-backed) ───
+const DB_KEY = 'synergy-db-v3';
+const defaultData = {
+  leads: [
+    {id:1,company:'Stockland',country:'AU',flag:'🇦🇺',sector:'Real Estate',type:'corporate',contact:'investor.relations@stockland.com.au',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'new',score:85},
+    {id:2,company:'QIC Limited',country:'AU',flag:'🇦🇺',sector:'Investment',type:'corporate',contact:'info@qic.com.au',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'new',score:78},
+    {id:3,company:'EDL Energy',country:'AU',flag:'🇦🇺',sector:'Energy',type:'corporate',contact:'info@edlenergy.com',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'new',score:72},
+    {id:4,company:'Singtel Group',country:'SG',flag:'🇸🇬',sector:'Telecom',type:'corporate',contact:'sustainability@singtel.com',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'contacted',score:80},
+    {id:5,company:'CapitaLand',country:'SG',flag:'🇸🇬',sector:'Real Estate',type:'corporate',contact:'sustainability@capitaland.com',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'contacted',score:76},
+    {id:6,company:'Keppel Corporation',country:'SG',flag:'🇸🇬',sector:'Conglomerate',type:'corporate',contact:'sustainability@keppel.com',temp:'Hot',priority:'A',status:'New',project:'esg',stage:'new',score:82},
+    {id:7,company:'BDO Australia',country:'AU',flag:'🇦🇺',sector:'Accounting',type:'accounting',contact:'via LinkedIn',temp:'Warm',priority:'A',status:'New',project:'esg',stage:'meeting',score:65},
+    {id:8,company:'Grant Thornton',country:'AU',flag:'🇦🇺',sector:'Accounting',type:'accounting',contact:'via LinkedIn',temp:'Warm',priority:'A',status:'New',project:'esg',stage:'new',score:58},
+    {id:9,company:'Connor Group',country:'UK',flag:'🇬🇧',sector:'Staffing',type:'corporate',contact:'info@connor.co.uk',temp:'Warm',priority:'B',status:'New',project:'esg',stage:'contacted',score:45},
+    {id:10,company:'Bodycote plc',country:'UK',flag:'🇬🇧',sector:'Engineering',type:'corporate',contact:'info@bodycote.com',temp:'Warm',priority:'B',status:'New',project:'esg',stage:'new',score:42},
+  ],
+  tasks: [
+    {id:1,title:'Follow-up email: QIC Limited',project:'ESG Outreach',due:'2025-03-09',priority:'High',done:false,category:'overdue'},
+    {id:2,title:'Send pitch: Grant Thornton AU',project:'Accounting Firm',due:'2025-03-11',priority:'High',done:false,category:'today'},
+    {id:3,title:'Research: Greenomy partner program',project:'Software Partners',due:'2025-03-12',priority:'Medium',done:false,category:'week'},
+    {id:4,title:'Prepare ESG case study draft',project:'Strategy',due:'2025-03-14',priority:'Medium',done:false,category:'week'},
+    {id:5,title:'GRI certification — Module 1',project:'Credentials',due:'2025-03-18',priority:'Normal',done:false,category:'week'},
+    {id:6,title:'Build ESG readiness scoring tool',project:'Lead Magnets',due:'2025-03-25',priority:'Normal',done:false,category:'week'},
+    {id:7,title:'LuminX pilot proposal for CEP',project:'GreenCore',due:'2025-03-20',priority:'Medium',done:false,category:'week'},
+  ],
+  activity: [
+    {type:'email',text:'Email sent to Stockland',detail:'SYN · Service Pitch',time:'2h ago',color:'var(--mint)'},
+    {type:'lead',text:'Follow-up scheduled: BDO AU',detail:'Accounting Firm · 3-day follow-up',time:'5h ago',color:'var(--sky)'},
+    {type:'lead',text:'New lead: Keppel Corporation',detail:'Singapore · Corporate · Hot',time:'Yesterday',color:'var(--violet)'},
+    {type:'system',text:'AI: CSRD deadlines updated',detail:'Auto-detected regulatory change',time:'Yesterday',color:'var(--teal)'},
+  ],
+  settings: { claudeApiKey: '' }
+};
+
+function loadDB() {
+  try {
+    const saved = localStorage.getItem(DB_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return JSON.parse(JSON.stringify(defaultData));
+}
+function saveDB(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
+let DB = loadDB();
+
+// ─── GREETING ───
+!function(){const h=new Date().getHours();document.getElementById('greet').textContent=h<12?'Good morning':h<17?'Good afternoon':'Good evening'}();
+
+// ─── THEME ───
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('synergy-theme',next);
+  showToast('Theme: '+next,'🎨');
+}
+!function(){
+  const saved=localStorage.getItem('synergy-theme');
+  if(saved){document.documentElement.setAttribute('data-theme',saved)}
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}
+}();
+
+// ─── NAVIGATION ───
+function go(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('p-'+id);
+  if(panel)panel.classList.add('active');
+  document.querySelectorAll('.snav').forEach(n=>n.classList.remove('active'));
+  const sideNav=document.querySelector('.snav[data-panel="'+id+'"]');
+  if(sideNav)sideNav.classList.add('active');
+  document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('on'));
+  const bNav=document.querySelector('.bnav-tab[data-panel="'+id+'"]');
+  if(bNav)bNav.classList.add('on');
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobOverlay').classList.remove('open');
+  document.getElementById('scrollC').scrollTop=0;
+  // Trigger animations on panel entry
+  if(id==='home') animateCounters();
+  if(id==='pipeline') renderKanban();
+  if(id==='calendar') renderCalendar();
+}
+
+document.querySelectorAll('.snav[data-panel]').forEach(nav=>{
+  nav.addEventListener('click',()=>go(nav.dataset.panel));
+});
+document.querySelectorAll('.bnav-tab[data-panel]').forEach(tab=>{
+  tab.addEventListener('click',()=>go(tab.dataset.panel));
+});
+
+function toggleSB(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('mobOverlay').classList.toggle('open');
+}
+
+// ─── MODALS ───
+function openM(id){document.getElementById('m-'+id).classList.add('show')}
+function closeM(id){document.getElementById('m-'+id).classList.remove('show')}
+document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')}));
+
+// ─── TOAST NOTIFICATIONS ───
+function showToast(msg, icon='✓') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = '<span class="toast-icon">'+icon+'</span>'+escHtml(msg);
+  container.appendChild(toast);
+  setTimeout(()=>toast.remove(), 3000);
+}
+
+// ─── ANIMATED COUNTERS ───
+function animateCounters() {
+  document.querySelectorAll('.bento-card .bv[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    let current = 0;
+    const step = Math.max(1, Math.floor(target / 30));
+    const interval = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(interval); }
+      el.textContent = current + suffix;
+    }, 25);
+  });
+}
+
+// ─── LEAD SCORING ───
+function getScoreClass(score) {
+  if (score >= 70) return 'score-high';
+  if (score >= 40) return 'score-mid';
+  return 'score-low';
+}
+
+// ─── RENDER LEADS TABLE ───
+function renderLeads() {
+  const tbody = document.getElementById('leadsBody');
+  if(!tbody) return;
+  tbody.innerHTML = DB.leads.map((l,i) => {
+    const tempClass = l.temp==='Hot'?'p-coral':l.temp==='Warm'?'p-amber':'p-dim';
+    const tempIcon = l.temp==='Hot'?'🔥 ':'';
+    return '<tr data-type="'+l.type+'"><td>'+(i+1)+'</td><td><strong>'+escHtml(l.company)+'</strong></td><td>'+l.flag+' '+l.country+'</td><td>'+escHtml(l.sector)+'</td><td style="font-size:11px">'+escHtml(l.contact)+'</td><td><span class="pill '+tempClass+'">'+tempIcon+l.temp+'</span></td><td><span class="lead-score '+getScoreClass(l.score)+'">'+l.score+'</span></td><td><span class="pill p-dim">'+l.status+'</span></td><td><button class="btn btn-g btn-sm" onclick="openM(\'compose\')">✉</button></td></tr>';
+  }).join('');
+}
+
+// ─── RENDER TASKS ───
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  const dashList = document.getElementById('dashTasks');
+  if(!list) return;
+  const openTasks = DB.tasks.filter(t=>!t.done);
+  const doneTasks = DB.tasks.filter(t=>t.done);
+  const overdue = openTasks.filter(t=>t.category==='overdue').length;
+
+  list.innerHTML = DB.tasks.map(t => {
+    const pillClass = t.done?'p-mint':t.category==='overdue'?'p-coral':t.category==='today'?'p-amber':'p-sky';
+    const pillText = t.done?'Done':t.category==='overdue'?'Overdue':t.category==='today'?'Today':t.due;
+    return '<div class="task-r'+(t.done?' completed':'')+'"><div class="task-ck'+(t.done?' done':'')+'" onclick="toggleTask('+t.id+')"></div><div><div class="tn">'+escHtml(t.title)+'</div><div class="tmeta"><span class="pill '+pillClass+'">'+pillText+'</span> <span class="pill p-dim">'+escHtml(t.project)+'</span></div></div></div>';
+  }).join('');
+
+  // Update dash tasks (first 4 open)
+  if(dashList) {
+    dashList.innerHTML = openTasks.slice(0,4).map(t => {
+      const pillClass = t.category==='overdue'?'p-coral':t.category==='today'?'p-amber':'p-sky';
+      const pillText = t.category==='overdue'?'Overdue':t.category==='today'?'Today':t.due;
+      return '<div class="task-r"><div class="task-ck'+(t.done?' done':'')+'" onclick="toggleTask('+t.id+')"></div><div><div class="tn">'+escHtml(t.title)+'</div><div class="tmeta"><span class="pill '+pillClass+'">'+pillText+'</span> '+escHtml(t.project)+'</div></div></div>';
+    }).join('');
+  }
+
+  // Update counts
+  const sub = document.getElementById('taskSub');
+  if(sub) sub.textContent = openTasks.length+' open · '+overdue+' overdue';
+  const badge = document.getElementById('badge-tasks');
+  if(badge) badge.textContent = openTasks.length;
+  const dashCount = document.getElementById('dashTaskCount');
+  if(dashCount) dashCount.textContent = openTasks.length;
+}
+
+function toggleTask(id) {
+  const task = DB.tasks.find(t=>t.id===id);
+  if(task) {
+    task.done = !task.done;
+    saveDB(DB);
+    renderTasks();
+    if(task.done) {
+      showToast('Task completed: '+task.title, '✅');
+      logActivity('task', 'Completed: '+task.title, task.project, 'var(--mint)');
+    }
+  }
+}
+
+function saveTask() {
+  const title = document.getElementById('ntTitle').value.trim();
+  if(!title) return showToast('Please enter a task title','⚠');
+  const task = {
+    id: Date.now(),
+    title: title,
+    project: document.getElementById('ntProject').value,
+    due: document.getElementById('ntDue').value || '',
+    priority: document.getElementById('ntPriority').value,
+    done: false,
+    category: 'week'
+  };
+  DB.tasks.push(task);
+  saveDB(DB);
+  renderTasks();
+  closeM('newTask');
+  showToast('Task created: '+title, '📝');
+  logActivity('task', 'New task: '+title, task.project, 'var(--amber)');
+  document.getElementById('ntTitle').value='';
+}
+
+// ─── SAVE LEAD ───
+function saveLead() {
+  const company = document.getElementById('nlCompany').value.trim();
+  if(!company) return showToast('Please enter a company name','⚠');
+  const countries = {Australia:'AU',Singapore:'SG',UK:'UK','Hong Kong':'HK','Sri Lanka':'LK'};
+  const flags = {Australia:'🇦🇺',Singapore:'🇸🇬',UK:'🇬🇧','Hong Kong':'🇭🇰','Sri Lanka':'🇱🇰'};
+  const countryName = document.getElementById('nlCountry').value;
+  const lead = {
+    id: Date.now(),
+    company: company,
+    country: countries[countryName]||countryName,
+    flag: flags[countryName]||'🌐',
+    sector: document.getElementById('nlSector').value||'General',
+    type: document.getElementById('nlType').value.toLowerCase().replace(/ /g,''),
+    contact: document.getElementById('nlEmail').value||'—',
+    temp: document.getElementById('nlTemp').value,
+    priority: document.getElementById('nlPriority').value,
+    status: 'New',
+    project: document.getElementById('nlProject').value.toLowerCase().replace(/ /g,''),
+    stage: 'new',
+    score: Math.floor(Math.random()*40)+30
+  };
+  DB.leads.push(lead);
+  saveDB(DB);
+  renderLeads();
+  renderKanban();
+  closeM('newLead');
+  showToast('Lead added: '+company, '🎯');
+  logActivity('lead', 'New lead: '+company, lead.sector, 'var(--mint)');
+  document.getElementById('nlCompany').value='';
+  document.getElementById('nlSector').value='';
+  document.getElementById('nlEmail').value='';
+  document.getElementById('nlContact').value='';
+}
+
+// ─── KANBAN PIPELINE ───
+function renderKanban() {
+  const board = document.getElementById('kanbanBoard');
+  if(!board) return;
+  const stages = [
+    {key:'new',label:'New',color:'var(--text3)'},
+    {key:'contacted',label:'Contacted',color:'var(--sky)'},
+    {key:'meeting',label:'Meeting',color:'var(--amber)'},
+    {key:'proposal',label:'Proposal',color:'var(--violet)'},
+    {key:'won',label:'Won',color:'var(--mint)'},
+    {key:'lost',label:'Lost',color:'var(--coral)'}
+  ];
+  board.innerHTML = stages.map(s => {
+    const leads = DB.leads.filter(l=>l.stage===s.key);
+    return '<div class="kanban-col" data-stage="'+s.key+'" ondragover="event.preventDefault();this.classList.add(\'drag-over\')" ondragleave="this.classList.remove(\'drag-over\')" ondrop="dropLead(event,\''+s.key+'\')"><div class="kanban-col-head"><div><span class="kch-title" style="color:'+s.color+'">'+s.label+'</span> <span class="kch-count">'+leads.length+'</span></div></div>'+leads.map(l=>'<div class="kanban-card" draggable="true" ondragstart="dragLead(event,'+l.id+')" data-id="'+l.id+'"><div class="kc-name">'+escHtml(l.company)+'</div><div class="kc-meta">'+l.flag+' '+l.sector+' · <span class="lead-score '+getScoreClass(l.score)+'" style="display:inline-flex;width:24px;height:16px;font-size:9px;border-radius:8px">'+l.score+'</span></div></div>').join('')+'</div>';
+  }).join('');
+}
+
+let draggedLeadId = null;
+function dragLead(e, id) { draggedLeadId = id; e.dataTransfer.effectAllowed='move'; }
+function dropLead(e, stage) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if(draggedLeadId===null) return;
+  const lead = DB.leads.find(l=>l.id===draggedLeadId);
+  if(lead && lead.stage !== stage) {
+    const old = lead.stage;
+    lead.stage = stage;
+    saveDB(DB);
+    renderKanban();
+    showToast(lead.company+' → '+stage.charAt(0).toUpperCase()+stage.slice(1), '📋');
+    logActivity('lead', lead.company+': '+old+' → '+stage, 'Pipeline move', 'var(--sky)');
+  }
+  draggedLeadId = null;
+}
+
+// ─── ACTIVITY LOG ───
+function logActivity(type, text, detail, color) {
+  DB.activity.unshift({type, text, detail, time: 'Just now', color: color||'var(--text3)'});
+  if(DB.activity.length > 50) DB.activity = DB.activity.slice(0,50);
+  saveDB(DB);
+  renderActivityLog();
+}
+
+function renderActivityLog() {
+  const log = document.getElementById('activityLog');
+  if(!log) return;
+  log.innerHTML = DB.activity.map(a =>
+    '<div class="tl-item"><div class="td" style="border-color:'+a.color+'"></div><div class="tc"><div class="tt">'+escHtml(a.text)+'</div><div class="tm">'+escHtml(a.detail)+'</div><div class="tw">'+escHtml(a.time)+'</div></div></div>'
+  ).join('');
+}
+
+// ─── CALENDAR ───
+let calMonth = new Date().getMonth();
+let calYear = new Date().getFullYear();
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function renderCalendar() {
+  const title = document.getElementById('calTitle');
+  const grid = document.getElementById('calGrid');
+  if(!title||!grid) return;
+  title.textContent = months[calMonth]+' '+calYear;
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const today = new Date();
+  let html = '';
+
+  // Previous month filler
+  const prevDays = new Date(calYear, calMonth, 0).getDate();
+  for(let i=firstDay-1;i>=0;i--) {
+    html += '<div class="cal-cell other-month">'+(prevDays-i)+'</div>';
+  }
+
+  // Current month
+  for(let d=1;d<=daysInMonth;d++) {
+    const isToday = d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
+    const dateStr = calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const tasksOnDay = DB.tasks.filter(t=>t.due===dateStr);
+    const dots = tasksOnDay.length > 0 ? '<div class="cal-dots">'+tasksOnDay.slice(0,3).map(t=>'<div class="cal-dot" style="background:'+(t.priority==='High'?'var(--coral)':t.priority==='Medium'?'var(--amber)':'var(--sky)')+'"></div>').join('')+'</div>' : '';
+    html += '<div class="cal-cell'+(isToday?' today':'')+'" onclick="showCalDay(\''+dateStr+'\')">'+d+dots+'</div>';
+  }
+
+  // Next month filler
+  const totalCells = firstDay + daysInMonth;
+  const remaining = 7 - (totalCells % 7);
+  if(remaining < 7) {
+    for(let i=1;i<=remaining;i++) html += '<div class="cal-cell other-month">'+i+'</div>';
+  }
+
+  grid.innerHTML = html;
+}
+
+function calNav(dir) { calMonth+=dir; if(calMonth>11){calMonth=0;calYear++}if(calMonth<0){calMonth=11;calYear--} renderCalendar(); }
+
+function showCalDay(dateStr) {
+  const detail = document.getElementById('calDetail');
+  const title = document.getElementById('calDetailTitle');
+  const items = document.getElementById('calDetailItems');
+  const tasks = DB.tasks.filter(t=>t.due===dateStr);
+  if(tasks.length===0) { detail.style.display='none'; return; }
+  detail.style.display='block';
+  title.textContent = new Date(dateStr+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  items.innerHTML = tasks.map(t=>'<div class="task-r"><div class="task-ck'+(t.done?' done':'')+'" onclick="toggleTask('+t.id+')"></div><div><div class="tn">'+escHtml(t.title)+'</div><div class="tmeta"><span class="pill p-dim">'+escHtml(t.project)+'</span></div></div></div>').join('');
+}
+
+// ─── EMAIL ───
+function previewEmail(el) {
+  const name = el.querySelector('.ln').textContent;
+  const subject = el.querySelector('.ld').textContent;
+  document.getElementById('epSubject').textContent = subject;
+  document.getElementById('epFrom').textContent = 'From: '+name;
+  document.getElementById('epBody').innerHTML = 'Hi Goody,<br><br>Thank you for reaching out regarding '+escHtml(subject.split('—')[0].trim())+'. We are very interested in exploring this further.<br><br>Could we schedule a call this week to discuss the next steps?<br><br>Best regards,<br>'+escHtml(name);
+  document.getElementById('emailPreview').style.display='block';
+}
+
+function sendEmail() {
+  const to = document.getElementById('composeTo').value.trim();
+  const subject = document.getElementById('composeSubject').value.trim();
+  if(!to||!subject) return showToast('Please fill in To and Subject','⚠');
+  closeM('compose');
+  showToast('Email sent to '+to, '✉');
+  logActivity('email', 'Email sent: '+subject, 'To: '+to, 'var(--mint)');
+  document.getElementById('composeTo').value='';
+  document.getElementById('composeSubject').value='';
+  document.getElementById('composeBody').value='';
+}
+
+function updateCharCount() {
+  const body = document.getElementById('composeBody').value;
+  document.getElementById('charCount').textContent = body.length+' chars';
+}
+
+function loadTemplate() {
+  const templates = {
+    authority: {subject:'Your Team Sets the Strategy — We Handle the ESG Heavy Lift', body:'Dear [Name],\n\nMandatory sustainability reporting is here — and the reality is that the most time-consuming work isn\'t setting the strategy, it\'s executing the data collection, materiality assessments, Scope 3 calculations, and ISSB-aligned disclosures.\n\nThat\'s exactly what Synergy handles.\n\nWe act as your ESG reporting engine — embedded alongside your team to deliver board-ready sustainability reports without requiring you to hire an in-house ESG function.\n\nWould 15 minutes to explore this make sense?\n\nBest regards,\nGoody\nSynergy Global Alliance'},
+    problem: {subject:'Scope 3, Materiality KPIs, ISSB — Without Hiring a Team', body:'Dear [Name],\n\nIf your team is like the companies we speak with, the sustainability strategy is clear — but the execution bottleneck is real.\n\nScope 3 data from 100+ suppliers. Materiality assessments across double materiality. ISSB/ASRS disclosures that pass audit scrutiny.\n\nSynergy was built for exactly this. We embed alongside your team to handle the heavy-lift ESG execution, so your people can focus on strategy.\n\nOpen to a quick conversation?\n\nBest regards,\nGoody\nSynergy Global Alliance'},
+    concise: {subject:'We Do the Hard Part of ESG Reporting — So Your Team Doesn\'t Have To', body:'Dear [Name],\n\nSynergy Global Alliance handles the most technically complex aspects of sustainability reporting — Scope 3 calculations, ISSB-aligned disclosures, materiality assessments — so your team doesn\'t need to build an in-house ESG function.\n\nWould a 15-minute call make sense?\n\nBest regards,\nGoody\nSynergy Global Alliance'},
+    accounting: {subject:'White-Label ESG Reporting for Your Advisory Practice', body:'Dear [Name],\n\nAs mandatory ESG reporting requirements accelerate across APAC and beyond, mid-tier accounting firms are increasingly being asked by clients for sustainability advisory support.\n\nSynergy offers a white-label ESG reporting service designed specifically for accounting firm partnerships — your brand, our execution engine.\n\nWould you be open to exploring this?\n\nBest regards,\nGoody\nSynergy Global Alliance'},
+    software: {subject:'Managed Services Partnership — ESG Platform Implementation', body:'Dear [Name],\n\nAs ESG software adoption grows, many platforms need implementation partners who understand both the technical and regulatory landscape.\n\nSynergy specialises in managed ESG reporting services and is exploring strategic partnerships with ESG software providers to deliver end-to-end solutions.\n\nWould a conversation about partnership possibilities be worthwhile?\n\nBest regards,\nGoody\nSynergy Global Alliance'}
+  };
+  const sel = document.getElementById('composeTemplate').value;
+  if(sel && templates[sel]) {
+    document.getElementById('composeSubject').value = templates[sel].subject;
+    document.getElementById('composeBody').value = templates[sel].body;
+    updateCharCount();
+    showToast('Template loaded','📋');
+  }
+}
+
+function useTemplate(key) {
+  openM('compose');
+  document.getElementById('composeTemplate').value = key;
+  loadTemplate();
+}
+
+// ─── CHAT / AI RESEARCH ───
+function sendC(){
+  const i=document.getElementById('chatIn');
+  const msg=i.value.trim();
+  if(!msg)return;
+  const c=document.getElementById('chatMsgs');
+  c.innerHTML+='<div class="cb-wrap user"><div class="cb-av">G</div><div class="cb">'+escHtml(msg)+'</div></div>';
+  i.value='';
+  c.scrollTop=c.scrollHeight;
+
+  // Show typing indicator
+  const typingId = 'typing-'+Date.now();
+  c.innerHTML+='<div class="cb-wrap ai" id="'+typingId+'"><div class="cb-av">⚡</div><div class="cb"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>';
+  c.scrollTop=c.scrollHeight;
+
+  const apiKey = DB.settings.claudeApiKey;
+  if(apiKey && apiKey.startsWith('sk-ant-')) {
+    // Real Claude API call
+    fetchClaude(msg, typingId);
+  } else {
+    // Mock response
+    setTimeout(()=>{
+      const responses = [
+        'Based on my analysis, the ASRS (Australian Sustainability Reporting Standards) require in-scope entities to report from 1 January 2025. Key requirements include climate-related financial disclosures aligned with ISSB S2, Scope 1, 2 & 3 emissions reporting, and governance arrangements for climate-related risks.',
+        'For '+msg.split(' ').slice(-2).join(' ')+', I recommend focusing on their sustainability committee structure and recent ESG disclosures. Key engagement angles include ISSB alignment gaps, Scope 3 supply chain data challenges, and upcoming CSRD requirements for their EU operations.',
+        'Competitive landscape analysis: The ESG advisory market in APAC is growing at 23% CAGR. Key competitors include ERM, Anthesis, and South Pole. Synergy\'s differentiation lies in the embedded execution model — most competitors offer consulting, not ongoing managed services.',
+        'Supply chain ESG risk assessment: Based on GreenCore\'s 120-supplier database, 34% are in high-risk categories for Scope 3 emissions. Priority engagement should focus on Agriculture (28 suppliers) and Transport (18 suppliers) sectors for material impact.',
+      ];
+      const el = document.getElementById(typingId);
+      if(el) el.querySelector('.cb').textContent = responses[Math.floor(Math.random()*responses.length)];
+      c.scrollTop=c.scrollHeight;
+      logActivity('system','AI Research query','Query: '+msg.substring(0,50)+'...','var(--teal)');
+    }, 800+Math.random()*1200);
+  }
+}
+
+function aiQuick(query) {
+  document.getElementById('chatIn').value = query;
+  sendC();
+}
+
+async function fetchClaude(msg, typingId) {
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': DB.settings.claudeApiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1024,
+        system:'You are an ESG research assistant for Synergy Global Alliance, a sustainability reporting company. Provide concise, actionable intelligence on ESG regulations, lead research, and market analysis.',
+        messages:[{role:'user',content:msg}]
+      })
+    });
+    const data = await resp.json();
+    const el = document.getElementById(typingId);
+    if(el && data.content && data.content[0]) {
+      el.querySelector('.cb').textContent = data.content[0].text;
+    } else if(el) {
+      el.querySelector('.cb').textContent = 'API error: '+(data.error?.message||'Unknown error');
+    }
+  } catch(e) {
+    const el = document.getElementById(typingId);
+    if(el) el.querySelector('.cb').textContent = 'Connection error. Check API key in Settings.';
+  }
+  document.getElementById('chatMsgs').scrollTop = document.getElementById('chatMsgs').scrollHeight;
+}
+
+// ─── API KEY ───
+function saveApiKey() {
+  const key = document.getElementById('claudeApiKey').value.trim();
+  DB.settings.claudeApiKey = key;
+  saveDB(DB);
+  const status = document.getElementById('claudeApiStatus');
+  if(key) {
+    status.textContent = 'Connected';
+    status.className = 'pill p-mint';
+    showToast('Claude API key saved','🔑');
+  } else {
+    status.textContent = 'Setup Pending';
+    status.className = 'pill p-amber';
+  }
+}
+
+// ─── COMMAND PALETTE / GLOBAL SEARCH ───
+function openCmd() {
+  document.getElementById('cmdOverlay').classList.add('show');
+  const input = document.getElementById('cmdInput');
+  input.value='';
+  input.focus();
+  renderCmdResults('');
+}
+function closeCmd() {
+  document.getElementById('cmdOverlay').classList.remove('show');
+}
+document.getElementById('cmdOverlay').addEventListener('click',e=>{if(e.target.id==='cmdOverlay')closeCmd()});
+
+document.getElementById('cmdInput').addEventListener('input',e=>renderCmdResults(e.target.value));
+document.getElementById('cmdInput').addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeCmd();
+  if(e.key==='Enter') {
+    const sel = document.querySelector('.cmd-item.selected')||document.querySelector('.cmd-item');
+    if(sel) sel.click();
+  }
+  if(e.key==='ArrowDown'||e.key==='ArrowUp') {
+    e.preventDefault();
+    const items = [...document.querySelectorAll('.cmd-item')];
+    const cur = items.findIndex(i=>i.classList.contains('selected'));
+    items.forEach(i=>i.classList.remove('selected'));
+    const next = e.key==='ArrowDown'?Math.min(cur+1,items.length-1):Math.max(cur-1,0);
+    if(items[next]) items[next].classList.add('selected');
+  }
+});
+
+function renderCmdResults(query) {
+  const results = document.getElementById('cmdResults');
+  const q = query.toLowerCase().trim();
+
+  // Build searchable items
+  const items = [
+    ...DB.leads.map(l=>({icon:'◉',iconBg:'var(--mint-bg)',label:l.company,desc:l.flag+' '+l.sector+' · Score: '+l.score,action:()=>{go('leads');closeCmd()}})),
+    ...DB.tasks.filter(t=>!t.done).map(t=>({icon:'☐',iconBg:'var(--amber-bg)',label:t.title,desc:t.project+' · '+t.due,action:()=>{go('tasks');closeCmd()}})),
+    {icon:'⊞',iconBg:'var(--mint-bg)',label:'Dashboard',desc:'Go to dashboard',shortcut:'1',action:()=>{go('home');closeCmd()}},
+    {icon:'◎',iconBg:'var(--sky-bg)',label:'Pipeline',desc:'Kanban pipeline board',shortcut:'2',action:()=>{go('pipeline');closeCmd()}},
+    {icon:'◉',iconBg:'var(--mint-bg)',label:'Leads & Contacts',desc:'Lead management',shortcut:'3',action:()=>{go('leads');closeCmd()}},
+    {icon:'✦',iconBg:'var(--amber-bg)',label:'Campaigns',desc:'Email campaigns',shortcut:'4',action:()=>{go('campaigns');closeCmd()}},
+    {icon:'☐',iconBg:'var(--amber-bg)',label:'Tasks',desc:'Task management',shortcut:'5',action:()=>{go('tasks');closeCmd()}},
+    {icon:'⚡',iconBg:'var(--mint-bg)',label:'AI Research',desc:'ESG intelligence',shortcut:'6',action:()=>{go('ai');closeCmd()}},
+    {icon:'📅',iconBg:'var(--sky-bg)',label:'Calendar',desc:'Calendar view',action:()=>{go('calendar');closeCmd()}},
+    {icon:'+',iconBg:'var(--sky-bg)',label:'New Lead',desc:'Add a new lead',shortcut:'N',action:()=>{openM('newLead');closeCmd()}},
+    {icon:'+',iconBg:'var(--amber-bg)',label:'New Task',desc:'Create a task',shortcut:'T',action:()=>{openM('newTask');closeCmd()}},
+    {icon:'✉',iconBg:'var(--coral-bg)',label:'Compose Email',desc:'Write an email',shortcut:'E',action:()=>{openM('compose');closeCmd()}},
+  ];
+
+  const filtered = q ? items.filter(i=>i.label.toLowerCase().includes(q)||i.desc.toLowerCase().includes(q)) : items.slice(-6);
+
+  if(filtered.length===0) {
+    results.innerHTML = '<div class="cmd-empty">No results for "'+escHtml(query)+'"</div>';
+    return;
+  }
+
+  results.innerHTML = filtered.slice(0,10).map((item,i) =>
+    '<div class="cmd-item'+(i===0?' selected':'')+'" onclick="void(0)"><div class="cmd-icon" style="background:'+item.iconBg+'">'+item.icon+'</div><div><div class="cmd-label">'+escHtml(item.label)+'</div><div class="cmd-desc">'+escHtml(item.desc)+'</div></div>'+(item.shortcut?'<span class="cmd-shortcut">'+item.shortcut+'</span>':'')+'</div>'
+  ).join('');
+
+  // Attach click handlers
+  results.querySelectorAll('.cmd-item').forEach((el,i) => {
+    el.addEventListener('click', () => filtered[i].action());
+  });
+}
+
+// ─── KEYBOARD SHORTCUTS ───
+document.addEventListener('keydown', e => {
+  // Don't trigger in inputs
+  const tag = document.activeElement.tagName;
+  const inInput = tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT';
+
+  // Cmd/Ctrl+K - command palette
+  if((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); openCmd(); return; }
+
+  // Escape - close modals/overlays
+  if(e.key==='Escape') {
+    closeCmd();
+    document.querySelectorAll('.modal-bg.show').forEach(m=>m.classList.remove('show'));
+    return;
+  }
+
+  if(inInput) return;
+
+  // Number keys for navigation
+  const panelMap = {'1':'home','2':'pipeline','3':'leads','4':'campaigns','5':'tasks','6':'ai','7':'kpis','8':'suppliers','9':'settings'};
+  if(panelMap[e.key]) { go(panelMap[e.key]); return; }
+
+  // Action shortcuts
+  if(e.key==='n'||e.key==='N') { openM('newLead'); return; }
+  if(e.key==='t'||e.key==='T') { openM('newTask'); return; }
+  if(e.key==='e'||e.key==='E') { openM('compose'); return; }
+  if(e.key==='/') { e.preventDefault(); openCmd(); return; }
+  if(e.key==='?') { openM('shortcuts'); return; }
+});
+
+// ─── CHIP FILTERING ───
+function setupChipFiltering(chipsId, filterFn) {
+  const container = document.getElementById(chipsId);
+  if(!container) return;
+  container.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    container.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    chip.classList.add('on');
+    const filter = chip.dataset.filter || 'all';
+    filterFn(filter);
+  });
+}
+
+// Email chip filtering
+setupChipFiltering('emailChips', filter => {
+  document.querySelectorAll('#emailList .lead-r').forEach(row => {
+    const domain = row.dataset.domain;
+    row.style.display = (filter==='all'||domain===filter) ? '' : 'none';
+  });
+});
+
+// Lead chip filtering
+setupChipFiltering('leadChips', filter => {
+  document.querySelectorAll('#leadsBody tr').forEach(row => {
+    const type = row.dataset.type;
+    row.style.display = (filter==='all'||type===filter) ? '' : 'none';
+  });
+});
+
+// Supplier chip filtering
+setupChipFiltering('supplierChips', filter => {
+  document.querySelectorAll('#supplierTable tbody tr').forEach(row => {
+    const sector = row.dataset.sector;
+    row.style.display = (filter==='all'||sector===filter) ? '' : 'none';
+  });
+});
+
+// Task chip filtering
+setupChipFiltering('taskChips', filter => {
+  document.querySelectorAll('#taskList .task-r').forEach(row => {
+    if(filter==='all') { row.style.display = row.classList.contains('completed')?'none':''; return; }
+    if(filter==='done') { row.style.display = row.classList.contains('completed')?'':'none'; return; }
+    // Check pill text
+    const pill = row.querySelector('.pill');
+    const text = pill?pill.textContent.toLowerCase():'';
+    if(filter==='overdue') row.style.display = text.includes('overdue')?'':'none';
+    else if(filter==='today') row.style.display = text.includes('today')?'':'none';
+    else row.style.display = '';
+  });
+});
+
+// Generic chip toggling for remaining chips
+document.querySelectorAll('.chips').forEach(row=>{
+  if(row.id) return; // Already handled
+  row.addEventListener('click',e=>{
+    const chip=e.target.closest('.chip');
+    if(!chip)return;
+    const isAll=chip.textContent.trim().startsWith('All')||chip===row.children[0];
+    if(isAll){
+      row.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+      chip.classList.add('on');
+    }else{
+      const allChip=row.querySelector('.chip:first-child');
+      if(allChip)allChip.classList.remove('on');
+      chip.classList.toggle('on');
+      if(!row.querySelector('.chip.on')&&allChip){allChip.classList.add('on')}
+    }
+  });
+});
+
+// ─── TABLE SORTING ───
+function sortTable(tableId, colIdx) {
+  const table = document.getElementById(tableId);
+  if(!table) return;
+  const tbody = table.querySelector('tbody');
+  const rows = [...tbody.querySelectorAll('tr')];
+  const dir = table.dataset.sortDir === 'asc' ? 'desc' : 'asc';
+  table.dataset.sortDir = dir;
+  rows.sort((a,b) => {
+    const aVal = a.cells[colIdx]?.textContent.trim()||'';
+    const bVal = b.cells[colIdx]?.textContent.trim()||'';
+    const aNum = parseFloat(aVal);
+    const bNum = parseFloat(bVal);
+    if(!isNaN(aNum)&&!isNaN(bNum)) return dir==='asc'?aNum-bNum:bNum-aNum;
+    return dir==='asc'?aVal.localeCompare(bVal):bVal.localeCompare(aVal);
+  });
+  rows.forEach(r=>tbody.appendChild(r));
+}
+
+// ─── EXPORT DATA ───
+function exportData(type) {
+  let data, filename;
+  if(type==='leads'||type==='pipeline') {
+    data = DB.leads.map(l=>l.company+','+l.country+','+l.sector+','+l.contact+','+l.temp+','+l.score+','+l.stage).join('\n');
+    data = 'Company,Country,Sector,Contact,Temperature,Score,Stage\n'+data;
+    filename = 'synergy-'+type+'.csv';
+  } else if(type==='suppliers') {
+    data = 'Supplier,Sector,Country,Tier,Email\n';
+    document.querySelectorAll('#supplierTable tbody tr').forEach(row => {
+      const cells = [...row.cells].map(c=>c.textContent.trim());
+      data += cells.slice(1).join(',')+'\n';
+    });
+    filename = 'synergy-suppliers.csv';
+  } else {
+    data = JSON.stringify(DB, null, 2);
+    filename = 'synergy-all-data.json';
+  }
+  const blob = new Blob([data], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  showToast('Exported: '+filename, '📥');
+}
+
+// ─── UTILITIES ───
+function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+// ─── INIT ───
+!function init(){
+  renderLeads();
+  renderTasks();
+  renderActivityLog();
+  renderKanban();
+  renderCalendar();
+  animateCounters();
+  // Load saved API key
+  if(DB.settings.claudeApiKey) {
+    document.getElementById('claudeApiKey').value = DB.settings.claudeApiKey;
+    document.getElementById('claudeApiStatus').textContent = 'Connected';
+    document.getElementById('claudeApiStatus').className = 'pill p-mint';
+  }
+}();
+</script>
+</body>
+</html>
