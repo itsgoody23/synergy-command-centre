@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Synergy — Command Centre</title>
+<style>
+/* ═══════════════════════════════════════════════════════
+   SYNERGY COMMAND CENTRE — LIQUID GLASS · UNIFIED
+   Light + Dark · Desktop + Mobile
+   ═══════════════════════════════════════════════════════ */
+
+@font-face{font-family:'SF Pro Display';src:local('SF Pro Display'),local('.SFNSDisplay')}
+@font-face{font-family:'SF Pro Text';src:local('SF Pro Text'),local('.SFNSText')}
+
+/* ─── LIGHT THEME ─── */
+[data-theme="light"]{
+  --bg:#f2f2f7;
+  --bg-solid:#f2f2f7;
+  --mesh1:rgba(120,200,255,.10);
+  --mesh2:rgba(200,160,255,.07);
+  --mesh3:rgba(255,180,200,.05);
+  --glass:rgba(255,255,255,.52);
+  --glass-b:rgba(255,255,255,.65);
+  --glass-hover:rgba(255,255,255,.72);
+  --glass-deep:rgba(255,255,255,.35);
+  --sidebar-glass:rgba(255,255,255,.55);
+  --sidebar-border:rgba(255,255,255,.7);
+  --topbar-glass:rgba(249,249,249,.72);
+  --bnav-glass:rgba(249,249,249,.72);
+  --modal-glass:rgba(255,255,255,.88);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.03);
+  --shadow-md:0 4px 20px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.06);
+  --inset-hi:inset 0 1px 0 rgba(255,255,255,.55);
+  --card-top-line:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+  --text:#1c1c1e;
+  --text2:rgba(60,60,67,.6);
+  --text3:rgba(60,60,67,.28);
+  --sep:rgba(60,60,67,.08);
+  --sep2:rgba(60,60,67,.12);
+  --input-bg:rgba(0,0,0,.03);
+  --table-hover:rgba(0,122,255,.02);
+  --chip-active-bg:#1c1c1e;
+  --chip-active-text:#fff;
+  --snav-active-bg:rgba(0,122,255,.08);
+  --snav-hover-bg:rgba(0,0,0,.03);
+  --scroll-thumb:rgba(0,0,0,.08);
+  --overlay:rgba(0,0,0,.3);
+  --accent-on-dark:#fff;
+}
+
+/* ─── DARK THEME ─── */
+[data-theme="dark"]{
+  --bg:#000000;
+  --bg-solid:#000000;
+  --mesh1:rgba(0,122,255,.08);
+  --mesh2:rgba(175,82,222,.06);
+  --mesh3:rgba(255,45,85,.04);
+  --glass:rgba(30,30,32,.60);
+  --glass-b:rgba(255,255,255,.08);
+  --glass-hover:rgba(40,40,44,.70);
+  --glass-deep:rgba(20,20,22,.55);
+  --sidebar-glass:rgba(18,18,20,.80);
+  --sidebar-border:rgba(255,255,255,.06);
+  --topbar-glass:rgba(18,18,20,.75);
+  --bnav-glass:rgba(18,18,20,.80);
+  --modal-glass:rgba(30,30,34,.92);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.15);
+  --shadow-md:0 4px 20px rgba(0,0,0,.20);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.30);
+  --inset-hi:inset 0 1px 0 rgba(255,255,255,.06);
+  --card-top-line:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  --text:#f5f5f7;
+  --text2:rgba(235,235,245,.6);
+  --text3:rgba(235,235,245,.25);
+  --sep:rgba(255,255,255,.06);
+  --sep2:rgba(255,255,255,.10);
+  --input-bg:rgba(255,255,255,.05);
+  --table-hover:rgba(0,122,255,.04);
+  --chip-active-bg:rgba(255,255,255,.92);
+  --chip-active-text:#000;
+  --snav-active-bg:rgba(0,122,255,.14);
+  --snav-hover-bg:rgba(255,255,255,.04);
+  --scroll-thumb:rgba(255,255,255,.10);
+  --overlay:rgba(0,0,0,.55);
+  --accent-on-dark:#000;
+}
+
+/* ─── SHARED COLOR TOKENS ─── */
+:root{
+  --mint:#34c759;--mint-bg:rgba(52,199,89,.12);
+  --sky:#007aff;--sky-bg:rgba(0,122,255,.12);
+  --coral:#ff6b6b;--coral-bg:rgba(255,107,107,.12);
+  --amber:#ff9f0a;--amber-bg:rgba(255,159,10,.12);
+  --violet:#af52de;--violet-bg:rgba(175,82,222,.12);
+  --teal:#5ac8fa;--teal-bg:rgba(90,200,250,.12);
+  --pink:#ff2d55;--pink-bg:rgba(255,45,85,.10);
+  --indigo:#5856d6;--indigo-bg:rgba(88,86,214,.12);
+  --r-sm:12px;--r-md:18px;--r-lg:24px;--r-xl:32px;
+  --sidebar-w:260px;
+  --nav-h:82px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+[data-theme="dark"]{
+  --mint:#30d158;--mint-bg:rgba(48,209,88,.15);
+  --sky:#0a84ff;--sky-bg:rgba(10,132,255,.15);
+  --coral:#ff6961;--coral-bg:rgba(255,105,97,.15);
+  --amber:#ff9f0a;--amber-bg:rgba(255,159,10,.15);
+  --violet:#bf5af2;--violet-bg:rgba(191,90,242,.15);
+  --teal:#64d2ff;--teal-bg:rgba(100,210,255,.15);
+  --pink:#ff375f;--pink-bg:rgba(255,55,95,.12);
+  --indigo:#5e5ce6;--indigo-bg:rgba(94,92,230,.15);
+}
+
+/* ─── RESET ─── */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{
+  font-family:'SF Pro Display','SF Pro Text',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  -webkit-font-smoothing:antialiased;font-size:16px;
+  background:var(--bg);color:var(--text);height:100%;
+  transition:background .35s ease,color .35s ease;
+}
+body{height:100%;overflow:hidden;display:flex}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:4px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ─── AMBIENT ─── */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .35s}
+.ambient::before{content:'';position:absolute;width:800px;height:800px;top:-300px;left:-200px;background:radial-gradient(circle,var(--mesh1) 0%,transparent 70%);animation:mf1 22s ease-in-out infinite}
+.ambient::after{content:'';position:absolute;width:600px;height:600px;bottom:-200px;right:-100px;background:radial-gradient(circle,var(--mesh2) 0%,transparent 70%);animation:mf2 28s ease-in-out infinite}
+.ambient .m3{position:absolute;width:500px;height:500px;top:45%;left:40%;background:radial-gradient(circle,var(--mesh3) 0%,transparent 60%);animation:mf3 20s ease-in-out infinite}
+@keyframes mf1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,40px) scale(1.12)}}
+@keyframes mf2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,-30px) scale(1.08)}}
+@keyframes mf3{0%,100%{transform:translate(0,0)}33%{transform:translate(25px,-30px)}66%{transform:translate(-20px,25px)}}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:var(--sidebar-glass);
+  backdrop-filter:blur(60px) saturate(180%);-webkit-backdrop-filter:blur(60px) saturate(180%);
+  border-right:.5px solid var(--sidebar-border);
+  display:flex;flex-direction:column;z-index:50;position:relative;
+  overflow-y:auto;overflow-x:hidden;padding:0 12px;
+  transition:background .35s,border-color .35s;
+}
+.sidebar-brand{padding:28px 12px 20px;display:flex;align-items:center;gap:10px}
+.sidebar-brand .logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--mint),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
+.sidebar-brand .bname{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.sidebar-brand .bsub{font-size:10px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.sidebar-section{padding:6px 0}
+.sidebar-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text3);font-weight:600;padding:14px 12px 6px}
+.snav{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-sm);cursor:pointer;font-size:14px;font-weight:500;color:var(--text2);transition:all .18s;position:relative;margin-bottom:2px}
+.snav:hover{background:var(--snav-hover-bg);color:var(--text)}
+.snav.active{background:var(--snav-active-bg);color:var(--sky);font-weight:600}
+.snav .si{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.snav .badge{margin-left:auto;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;min-width:22px;text-align:center}
+.b-green{background:var(--mint-bg);color:var(--mint)}
+.b-blue{background:var(--sky-bg);color:var(--sky)}
+.b-coral{background:var(--coral-bg);color:var(--coral)}
+.b-amber{background:var(--amber-bg);color:var(--amber)}
+.b-violet{background:var(--violet-bg);color:var(--violet)}
+
+/* ─── MAIN ─── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:1}
+
+/* ─── TOPBAR ─── */
+.topbar{
+  height:58px;flex-shrink:0;
+  background:var(--topbar-glass);
+  backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-bottom:.5px solid var(--sep);
+  display:flex;align-items:center;padding:0 28px;gap:14px;z-index:40;
+  transition:background .35s,border-color .35s;
+}
+.topbar .mob-toggle{display:none;width:36px;height:36px;border-radius:10px;border:none;background:transparent;font-size:18px;cursor:pointer;color:var(--text2)}
+.search-bar{flex:1;max-width:480px;position:relative}
+.search-bar input{width:100%;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-sm);padding:10px 14px 10px 38px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border .2s,background .2s}
+.search-bar input:focus{border-color:var(--sky);background:var(--glass-hover)}
+.search-bar input::placeholder{color:var(--text3)}
+.search-bar .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px}
+.topbar-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.top-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--sep2);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s}
+.top-btn:hover{border-color:var(--sky);color:var(--sky);background:var(--glass-hover)}
+.top-btn.has-dot{position:relative}
+.top-btn.has-dot::after{content:'';position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--coral);border-radius:50%;border:2px solid var(--bg-solid)}
+.avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--mint),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;cursor:pointer}
+
+/* ─── CONTENT ─── */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:28px 32px;-webkit-overflow-scrolling:touch}
+.panel{display:none;animation:panelIn .4s cubic-bezier(.25,.46,.45,.94)}
+.panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.panel-head{margin-bottom:28px}
+.panel-head .greeting{font-size:14px;font-weight:500;color:var(--text2);margin-bottom:2px}
+.panel-head h1{font-size:34px;font-weight:800;letter-spacing:-.8px;line-height:1.1}
+.panel-head .sub{font-size:15px;color:var(--text2);margin-top:4px}
+.panel-head-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+
+/* ─── GLASS CARD ─── */
+.gc{
+  background:var(--glass);
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r-lg);padding:22px;
+  box-shadow:var(--shadow-sm),var(--inset-hi);
+  margin-bottom:16px;transition:transform .2s,box-shadow .2s,background .35s,border-color .35s;
+  position:relative;overflow:hidden;
+}
+.gc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--card-top-line)}
+.gc:hover{box-shadow:var(--shadow-md),var(--inset-hi)}
+
+/* ─── BENTO ─── */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.bento-card{
+  background:var(--glass);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border:1px solid var(--glass-b);border-radius:var(--r-lg);
+  padding:22px 20px;box-shadow:var(--shadow-sm),var(--inset-hi);
+  cursor:pointer;transition:transform .2s,box-shadow .2s,background .35s;position:relative;overflow:hidden;
+}
+.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--card-top-line)}
+.bento-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md),var(--inset-hi)}
+.bento-card:active{transform:scale(.97)}
+.bento-card .bi{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.bento-card .bv{font-size:32px;font-weight:800;letter-spacing:-1.2px;line-height:1}
+.bento-card .bl{font-size:13px;font-weight:500;color:var(--text2);margin-top:3px}
+
+/* ─── SECTION ─── */
+.sec-label{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--text3);padding:20px 0 10px}
+
+/* ─── TABLE ─── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-md);border:1px solid var(--glass-b);background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);transition:background .35s,border-color .35s}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{padding:11px 16px;text-align:left;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);border-bottom:.5px solid var(--sep);white-space:nowrap;background:var(--input-bg)}
+.tbl td{padding:12px 16px;border-bottom:.5px solid var(--sep);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--table-hover)}
+
+/* ─── PILLS ─── */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.p-mint{background:var(--mint-bg);color:var(--mint)}.p-sky{background:var(--sky-bg);color:var(--sky)}.p-coral{background:var(--coral-bg);color:var(--coral)}.p-amber{background:var(--amber-bg);color:var(--amber)}.p-violet{background:var(--violet-bg);color:var(--violet)}.p-teal{background:var(--teal-bg);color:var(--teal)}.p-dim{background:var(--input-bg);color:var(--text2)}.p-pink{background:var(--pink-bg);color:var(--pink)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.domain-tag{padding:2px 7px;border-radius:5px;font-size:9px;font-weight:700;letter-spacing:.5px}
+.d-syn{background:var(--mint-bg);color:var(--mint)}.d-bpo{background:var(--sky-bg);color:var(--sky)}.d-enn{background:var(--violet-bg);color:var(--violet)}.d-agoc{background:var(--amber-bg);color:var(--amber)}
+
+/* ─── BUTTONS ─── */
+.btn{padding:9px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;border:1px solid var(--sep2);transition:all .15s;display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--text)}
+.btn-p{background:var(--sky);color:#fff;border-color:var(--sky)}.btn-p:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--text2)}.btn-g:hover{background:var(--snav-hover-bg);color:var(--text)}
+.btn-sm{padding:6px 14px;font-size:12px}
+
+/* ─── CHIPS ─── */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--sep2);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:var(--text2);transition:all .18s;white-space:nowrap}
+.chip:hover{background:var(--snav-hover-bg);color:var(--text)}
+.chip.on{background:var(--chip-active-bg);color:var(--chip-active-text);border-color:var(--chip-active-bg)}
+
+/* ─── PROGRESS ─── */
+.pbar{height:5px;background:var(--input-bg);border-radius:3px;overflow:hidden}.pfill{height:100%;border-radius:3px;transition:width .6s ease}
+
+/* ─── GRIDS ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+/* ─── ACCOUNT ROW ─── */
+.acc-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-md);margin-bottom:10px;cursor:pointer;transition:transform .15s,background .35s;box-shadow:var(--shadow-sm),var(--inset-hi)}
+.acc-row:hover{transform:translateY(-1px);box-shadow:var(--shadow-md),var(--inset-hi)}
+.acc-row:active{transform:scale(.98)}
+.acc-row .ai{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.acc-row .an{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.acc-row .ae{font-size:12px;color:var(--text2)}
+.acc-row .ab{min-width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;margin-left:auto}
+
+/* ─── TIMELINE ─── */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:1.5px;background:var(--sep2);border-radius:1px}
+.tl-item{position:relative;padding:14px 0}
+.tl-item .td{position:absolute;left:-26px;top:18px;width:13px;height:13px;border-radius:50%;border:2.5px solid;background:var(--bg-solid);z-index:1}
+.tl-item .tc{background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:var(--r-md);padding:14px 18px;box-shadow:var(--shadow-sm);transition:background .35s}
+.tl-item .tt{font-size:15px;font-weight:600;letter-spacing:-.2px;margin-bottom:3px}
+.tl-item .tm{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tl-item .tw{font-size:11px;color:var(--text3)}
+
+/* ─── CAMPAIGN ─── */
+.camp{background:var(--glass);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid var(--glass-b);border-radius:var(--r-lg);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm),var(--inset-hi);position:relative;overflow:hidden;transition:background .35s}
+.camp .ci{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:0 2px 2px 0}
+.camp .ch{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.camp .cn{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.camp .cd{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:14px}
+.camp .cs{display:flex;gap:20px}.camp .cs-v{font-size:22px;font-weight:800;letter-spacing:-.5px}.camp .cs-l{font-size:10px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+
+/* ─── TASK ─── */
+.task-r{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:.5px solid var(--sep)}
+.task-r:last-child{border-bottom:none}
+.task-ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--sep2);flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;background:transparent}
+.task-ck.done{background:var(--mint);border-color:var(--mint)}.task-ck.done::after{content:'✓';color:#fff;font-size:12px;font-weight:700}
+.task-r .tn{font-size:15px;font-weight:500;letter-spacing:-.2px;line-height:1.3}
+.task-r .tmeta{font-size:12px;color:var(--text2);margin-top:3px;display:flex;align-items:center;gap:6px}
+
+/* ─── KPI ─── */
+.kpi-row{display:flex;justify-content:space-around;padding:16px 0}
+.kpi{text-align:center}
+.kpi svg{width:80px;height:80px}
+.kpi .kt{fill:none;stroke:var(--input-bg);stroke-width:6}
+.kpi .kf{fill:none;stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.kpi .kv{font-size:20px;font-weight:800;letter-spacing:-.5px}
+.kpi .kl{font-size:11px;font-weight:500;color:var(--text2);margin-top:6px}
+
+/* ─── CHAT ─── */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 160px)}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px 0}
+.chat-msgs::-webkit-scrollbar{display:none}
+.cb-wrap{display:flex;gap:10px;margin-bottom:16px;max-width:80%;animation:cbIn .3s ease}
+.cb-wrap.user{margin-left:auto;flex-direction:row-reverse}
+@keyframes cbIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cb-av{width:30px;height:30px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:2px}
+.cb-wrap.ai .cb-av{background:linear-gradient(135deg,var(--mint),var(--teal));color:#fff}
+.cb-wrap.user .cb-av{background:var(--sky);color:#fff}
+.cb{background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:18px;padding:13px 18px;font-size:15px;line-height:1.55;letter-spacing:-.1px;transition:background .35s}
+.cb-wrap.user .cb{background:var(--sky);border-color:var(--sky);color:#fff}
+.chat-in{display:flex;gap:10px;padding:12px 0;border-top:.5px solid var(--sep);align-items:center}
+.chat-in input{flex:1;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-b);border-radius:22px;padding:12px 20px;font-size:15px;font-family:inherit;color:var(--text);outline:none;transition:background .35s,border-color .2s}
+.chat-in input:focus{border-color:var(--sky)}
+.chat-in input::placeholder{color:var(--text3)}
+.chat-send{width:42px;height:42px;border-radius:50%;background:var(--sky);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .15s;color:#fff;font-size:18px;font-weight:700}
+.chat-send:active{transform:scale(.9)}
+
+/* ─── LEAD ROW ─── */
+.lead-r{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:.5px solid var(--sep);cursor:pointer}
+.lead-r:last-child{border-bottom:none}
+.lead-av{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;color:#fff}
+.lead-r .ln{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.lead-r .ld{font-size:12px;color:var(--text2)}
+.lead-r .ls{flex-shrink:0;margin-left:auto}
+
+/* ─── ROLE ─── */
+.role{padding:3px 10px;border-radius:6px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.r-admin{background:var(--coral-bg);color:var(--coral)}.r-mgr{background:var(--sky-bg);color:var(--sky)}.r-analyst{background:var(--mint-bg);color:var(--mint)}.r-viewer{background:var(--violet-bg);color:var(--violet)}
+
+/* ─── CELEBRATION ─── */
+.celeb{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;background:linear-gradient(135deg,var(--mint-bg),var(--teal-bg));color:var(--mint)}
+
+/* ─── ANIMATIONS ─── */
+.fade{opacity:0;animation:fadeU .5s cubic-bezier(.25,.46,.45,.94) forwards}
+@keyframes fadeU{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.s1{animation-delay:.05s}.s2{animation-delay:.1s}.s3{animation-delay:.15s}.s4{animation-delay:.2s}.s5{animation-delay:.25s}
+
+/* ─── MODAL ─── */
+.modal-bg{position:fixed;inset:0;background:var(--overlay);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal-bg.show{display:flex}
+.modal{background:var(--modal-glass);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);border:1px solid var(--glass-b);border-radius:var(--r-xl);padding:32px;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;animation:mIn .3s ease;box-shadow:var(--shadow-lg);transition:background .35s}
+@keyframes mIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal h2{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--input-bg);border:1px solid var(--sep2);border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border .2s,background .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky)}
+.fg textarea{min-height:80px;resize:vertical}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg select{appearance:auto}
+
+/* ─── BOTTOM NAV ─── */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:var(--nav-h);
+  background:var(--bnav-glass);
+  backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-top:.5px solid var(--sep);
+  display:none;align-items:flex-start;justify-content:space-around;
+  padding:8px 8px calc(var(--safe-b) + 8px);z-index:100;
+  transition:background .35s,border-color .35s;
+}
+.bnav-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;cursor:pointer;position:relative}
+.bnav-tab svg{width:24px;height:24px;fill:none;stroke:var(--text3);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.bnav-tab .bl{font-size:10px;font-weight:500;color:var(--text3);transition:color .2s}
+.bnav-tab.on svg{stroke:var(--sky)}.bnav-tab.on .bl{color:var(--sky);font-weight:600}
+.bnav-tab .nd{position:absolute;top:1px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--coral);border:2px solid var(--bg-solid)}
+
+/* ─── MOBILE OVERLAY ─── */
+.mob-overlay{position:fixed;inset:0;background:var(--overlay);z-index:49;display:none;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.mob-overlay.open{display:block}
+
+/* ─── THEME TOGGLE ICON ─── */
+.theme-icon-light,.theme-icon-dark{display:none}
+[data-theme="light"] .theme-icon-light{display:inline}
+[data-theme="dark"] .theme-icon-dark{display:inline}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:900px){
+  .sidebar{position:fixed;left:-280px;top:0;bottom:0;z-index:60;transition:left .3s cubic-bezier(.25,.46,.45,.94);width:270px;min-width:270px}
+  .sidebar.open{left:0}
+  .topbar .mob-toggle{display:flex;align-items:center;justify-content:center}
+  .bento{grid-template-columns:1fr 1fr}
+  .g2,.g3{grid-template-columns:1fr}
+  .content{padding:20px}
+  .bnav{display:flex}
+  .content{padding-bottom:calc(var(--nav-h) + var(--safe-b) + 20px)}
+  .camp .cs{gap:14px;flex-wrap:wrap}
+  .chat-wrap{height:calc(100vh - 160px - var(--nav-h))}
+}
+@media(max-width:500px){
+  .content{padding:16px}
+  .bento-card .bv{font-size:26px}
+  .panel-head h1{font-size:28px}
+  .topbar{padding:0 16px}
+  .fg-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="ambient"><div class="m3"></div></div>
+<div class="mob-overlay" id="mobOverlay" onclick="toggleSB()"></div>
+
+<!-- ════════════ SIDEBAR ════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">S</div>
+    <div><div class="bname">Synergy</div><div class="bsub">Command Centre</div></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Overview</div>
+    <div class="snav active" data-panel="home"><div class="si" style="background:var(--mint-bg)">⊞</div>Dashboard</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">CRM & Outreach</div>
+    <div class="snav" data-panel="pipeline"><div class="si" style="background:var(--sky-bg)">◎</div>Pipeline<span class="badge b-blue">42</span></div>
+    <div class="snav" data-panel="leads"><div class="si" style="background:var(--mint-bg)">◉</div>Leads & Contacts</div>
+    <div class="snav" data-panel="campaigns"><div class="si" style="background:var(--amber-bg)">✦</div>Campaigns<span class="badge b-amber">4</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Email Accounts</div>
+    <div class="snav" data-panel="email" data-filter="syn"><div class="si" style="background:var(--mint-bg)">✉</div>Synergy<span class="badge b-green">8</span></div>
+    <div class="snav" data-panel="email" data-filter="bpo"><div class="si" style="background:var(--sky-bg)">✉</div>BPO<span class="badge b-blue">3</span></div>
+    <div class="snav" data-panel="email" data-filter="enn"><div class="si" style="background:var(--violet-bg)">✉</div>Ennacle<span class="badge b-violet">5</span></div>
+    <div class="snav" data-panel="email" data-filter="agoc"><div class="si" style="background:var(--amber-bg)">✉</div>AGOC<span class="badge b-amber">2</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Productivity</div>
+    <div class="snav" data-panel="tasks"><div class="si" style="background:var(--amber-bg)">☐</div>Tasks<span class="badge b-coral">7</span></div>
+    <div class="snav" data-panel="templates"><div class="si" style="background:var(--teal-bg)">📋</div>Templates</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Intelligence</div>
+    <div class="snav" data-panel="ai"><div class="si" style="background:var(--mint-bg)">⚡</div>AI Research</div>
+    <div class="snav" data-panel="kpis"><div class="si" style="background:var(--coral-bg)">◈</div>KPIs & Targets</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">System</div>
+    <div class="snav" data-panel="suppliers"><div class="si" style="background:var(--teal-bg)">⬡</div>GreenCore (120)</div>
+    <div class="snav" data-panel="team"><div class="si" style="background:var(--violet-bg)">👥</div>Team & Roles</div>
+    <div class="snav" data-panel="settings"><div class="si" style="background:var(--input-bg)">⚙</div>Settings</div>
+  </div>
+</aside>
+
+<!-- ════════════ MAIN ════════════ -->
+<div class="main">
+  <div class="topbar">
+    <button class="mob-toggle" onclick="toggleSB()">☰</button>
+    <div class="search-bar"><span class="si">⌕</span><input placeholder="Search leads, campaigns, tasks, emails…"></div>
+    <div class="topbar-right">
+      <div class="top-btn has-dot" title="Notifications" onclick="go('notif')">🔔</div>
+      <div class="top-btn" title="Toggle theme" onclick="toggleTheme()" id="themeBtn"><span class="theme-icon-light">🌙</span><span class="theme-icon-dark">☀️</span></div>
+      <div class="avatar" title="Goody — Admin">G</div>
+    </div>
+  </div>
+
+  <div class="content" id="scrollC">
+
+    <!-- ══════════ HOME ══════════ -->
+    <div class="panel active" id="p-home">
+      <div class="panel-head fade"><div class="greeting" id="greet">Good morning</div><h1>Dashboard</h1></div>
+      <div class="bento fade s1">
+        <div class="bento-card" onclick="go('pipeline')"><div class="bi" style="background:var(--mint-bg)">◎</div><div class="bv" style="color:var(--mint)">42</div><div class="bl">Pipeline</div></div>
+        <div class="bento-card" onclick="go('campaigns')"><div class="bi" style="background:var(--sky-bg)">✦</div><div class="bv" style="color:var(--sky)">4</div><div class="bl">Campaigns</div></div>
+        <div class="bento-card" onclick="go('tasks')"><div class="bi" style="background:var(--amber-bg)">☐</div><div class="bv" style="color:var(--amber)">7</div><div class="bl">Tasks Due</div></div>
+        <div class="bento-card" onclick="go('email')"><div class="bi" style="background:var(--coral-bg)">✉</div><div class="bv" style="color:var(--coral)">18</div><div class="bl">Unread</div></div>
+      </div>
+      <div class="sec-label fade s2">Connected Email Accounts</div>
+      <div class="g2 fade s2" style="margin-bottom:24px">
+        <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--mint-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">Synergy <span class="domain-tag d-syn">SYN</span></div><div class="ae">goody@synergy.lk · ESG Outreach</div></div><div class="ab" style="background:var(--mint)">8</div></div>
+        <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--sky-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">BPO <span class="domain-tag d-bpo">BPO</span></div><div class="ae">goody@bposervices.lk · Client Ops</div></div><div class="ab" style="background:var(--sky)">3</div></div>
+        <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--violet-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">Ennacle <span class="domain-tag d-enn">ENN</span></div><div class="ae">goody@ennacle.com · Tech & Dev</div></div><div class="ab" style="background:var(--violet)">5</div></div>
+        <div class="acc-row" onclick="go('email')"><div class="ai" style="background:var(--amber-bg)">✉</div><div style="flex:1;min-width:0"><div class="an">AGOC <span class="domain-tag d-agoc">AGOC</span></div><div class="ae">goody@agoc.lk · CEP Project</div></div><div class="ab" style="background:var(--amber)">2</div></div>
+      </div>
+      <div class="g2 fade s3">
+        <div>
+          <div class="sec-label">Recent Activity</div>
+          <div class="tl">
+            <div class="tl-item"><div class="td" style="border-color:var(--mint)"></div><div class="tc"><div class="tt">Email sent to Stockland</div><div class="tm"><span class="domain-tag d-syn">SYN</span> Service Pitch · Authority-led</div><div class="tw">2h ago</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--sky)"></div><div class="tc"><div class="tt">Follow-up scheduled: BDO AU</div><div class="tm"><span class="pill p-sky">Accounting Firm</span> 3-day follow-up</div><div class="tw">5h ago</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--violet)"></div><div class="tc"><div class="tt">New lead: Keppel Corporation</div><div class="tm">🇸🇬 Singapore · Corporate <span class="pill p-coral">Hot</span></div><div class="tw">Yesterday</div></div></div>
+            <div class="tl-item"><div class="td" style="border-color:var(--teal)"></div><div class="tc"><div class="tt">AI: CSRD deadlines updated</div><div class="tm"><span class="celeb">⚡ Auto-detected</span> Regulatory change</div><div class="tw">Yesterday</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Upcoming Tasks</div>
+          <div class="gc" style="padding:8px 18px">
+            <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Follow-up: QIC Limited</div><div class="tmeta"><span class="pill p-coral">Overdue</span> Mar 9</div></div></div>
+            <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Send pitch: Grant Thornton</div><div class="tmeta"><span class="pill p-amber">Today</span> Accounting Firm</div></div></div>
+            <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Research: Greenomy partner</div><div class="tmeta"><span class="pill p-sky">Tomorrow</span> Software Partners</div></div></div>
+            <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">ESG case study draft</div><div class="tmeta"><span class="pill p-mint">On Track</span> Mar 14</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PIPELINE ══════════ -->
+    <div class="panel" id="p-pipeline">
+      <div class="panel-head panel-head-row"><div><h1>Pipeline</h1><div class="sub">42 active leads · 5 projects</div></div><button class="btn btn-p btn-sm" onclick="openM('newLead')">+ Add Lead</button></div>
+      <div class="chips"><div class="chip on">All</div><div class="chip">ESG Outreach</div><div class="chip">GreenCore</div><div class="chip">Drone Survey</div><div class="chip">York Street</div><div class="chip">CEP</div></div>
+      <div class="gc">
+        <div class="kpi-row">
+          <div class="kpi"><svg viewBox="0 0 80 80"><circle class="kt" cx="40" cy="40" r="34"/><circle class="kf" cx="40" cy="40" r="34" stroke="var(--sky)" stroke-dasharray="213.6" stroke-dashoffset="213.6" transform="rotate(-90 40 40)"/></svg><div class="kv">0%</div><div class="kl">Sent</div></div>
+          <div class="kpi"><svg viewBox="0 0 80 80"><circle class="kt" cx="40" cy="40" r="34"/><circle class="kf" cx="40" cy="40" r="34" stroke="var(--amber)" stroke-dasharray="213.6" stroke-dashoffset="213.6" transform="rotate(-90 40 40)"/></svg><div class="kv">--</div><div class="kl">Response</div></div>
+          <div class="kpi"><svg viewBox="0 0 80 80"><circle class="kt" cx="40" cy="40" r="34"/><circle class="kf" cx="40" cy="40" r="34" stroke="var(--mint)" stroke-dasharray="213.6" stroke-dashoffset="213.6" transform="rotate(-90 40 40)"/></svg><div class="kv">0</div><div class="kl">Won</div></div>
+        </div>
+      </div>
+      <div class="sec-label">Hot Leads · Priority A</div>
+      <div class="gc" style="padding:6px 18px">
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--coral),var(--amber))">S</div><div style="flex:1"><div class="ln">Stockland</div><div class="ld">🇦🇺 Australia · Real Estate</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--sky),var(--indigo))">Q</div><div style="flex:1"><div class="ln">QIC Limited</div><div class="ld">🇦🇺 Australia · Investment</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--mint),var(--teal))">E</div><div style="flex:1"><div class="ln">EDL Energy</div><div class="ld">🇦🇺 Australia · Energy</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--violet),var(--pink))">ST</div><div style="flex:1"><div class="ln">Singtel Group</div><div class="ld">🇸🇬 Singapore · Telecom</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--teal),var(--sky))">CL</div><div style="flex:1"><div class="ln">CapitaLand Investment</div><div class="ld">🇸🇬 Singapore · Real Estate</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--amber),var(--coral))">KC</div><div style="flex:1"><div class="ln">Keppel Corporation</div><div class="ld">🇸🇬 Singapore · Conglomerate</div></div><div class="ls"><span class="pill p-coral">🔥 Hot</span></div></div>
+      </div>
+      <div class="sec-label">Warm Leads · Priority B</div>
+      <div class="gc" style="padding:6px 18px">
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--text3),var(--text2))">CG</div><div style="flex:1"><div class="ln">Connor Group</div><div class="ld">🇬🇧 UK · Staffing</div></div><div class="ls"><span class="pill p-amber">Warm</span></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:linear-gradient(135deg,var(--text3),var(--text2))">BC</div><div style="flex:1"><div class="ln">Bodycote plc</div><div class="ld">🇬🇧 UK · Engineering</div></div><div class="ls"><span class="pill p-amber">Warm</span></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ LEADS ══════════ -->
+    <div class="panel" id="p-leads">
+      <div class="panel-head panel-head-row"><div><h1>Leads & Contacts</h1><div class="sub">Corporate · Accounting · Software · Suppliers</div></div><button class="btn btn-p btn-sm" onclick="openM('newLead')">+ New Lead</button></div>
+      <div class="chips"><div class="chip on">Corporate (27)</div><div class="chip">Accounting (15)</div><div class="chip">Software (8)</div><div class="chip">GreenCore (120)</div></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Company</th><th>Country</th><th>Sector</th><th>Contact</th><th>Temp</th><th>Priority</th><th>Status</th><th></th></tr></thead><tbody>
+        <tr><td>1</td><td><strong>Stockland</strong></td><td>🇦🇺 AU</td><td>Real Estate</td><td style="font-size:11px">investor.relations@stockland.com.au</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>2</td><td><strong>QIC Limited</strong></td><td>🇦🇺 AU</td><td>Investment</td><td style="font-size:11px">info@qic.com.au</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>3</td><td><strong>EDL Energy</strong></td><td>🇦🇺 AU</td><td>Energy</td><td style="font-size:11px">info@edlenergy.com</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>4</td><td><strong>Singtel Group</strong></td><td>🇸🇬 SG</td><td>Telecom</td><td style="font-size:11px">sustainability@singtel.com</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>5</td><td><strong>CapitaLand</strong></td><td>🇸🇬 SG</td><td>Real Estate</td><td style="font-size:11px">sustainability@capitaland.com</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>6</td><td><strong>Keppel Corp</strong></td><td>🇸🇬 SG</td><td>Conglomerate</td><td style="font-size:11px">sustainability@keppel.com</td><td><span class="pill p-coral">🔥 Hot</span></td><td><span class="pill p-coral">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>7</td><td><strong>BDO Australia</strong></td><td>🇦🇺 AU</td><td>Accounting</td><td style="font-size:11px">via LinkedIn</td><td><span class="pill p-amber">Warm</span></td><td><span class="pill p-amber">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>8</td><td><strong>Grant Thornton</strong></td><td>🇦🇺 AU</td><td>Accounting</td><td style="font-size:11px">via LinkedIn</td><td><span class="pill p-amber">Warm</span></td><td><span class="pill p-amber">A</span></td><td><span class="pill p-dim">Not Started</span></td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- ══════════ CAMPAIGNS ══════════ -->
+    <div class="panel" id="p-campaigns">
+      <div class="panel-head panel-head-row"><div><h1>Campaigns</h1><div class="sub">Project-based email sequences</div></div><button class="btn btn-p btn-sm">+ New Campaign</button></div>
+      <div class="chips"><div class="chip on">All</div><div class="chip"><span class="domain-tag d-syn" style="background:none;padding:0">SYN</span></div><div class="chip"><span class="domain-tag d-bpo" style="background:none;padding:0">BPO</span></div><div class="chip"><span class="domain-tag d-enn" style="background:none;padding:0">ENN</span></div><div class="chip"><span class="domain-tag d-agoc" style="background:none;padding:0">AGOC</span></div></div>
+      <div class="g2">
+        <div class="camp"><div class="ci" style="background:var(--mint)"></div><div class="ch"><div><div class="cn">Service Pitch — Corporate ESG</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-syn">SYN</span><span class="pill p-mint">3 variants</span></div></div></div><div class="cd">Direct outreach to corporate ESG decision-makers in-scope under ASRS/ISSB</div><div class="cs"><div><div class="cs-v" style="color:var(--mint)">27</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--mint)"></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--sky)"></div><div class="ch"><div><div class="cn">Accounting Firm Partnership</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-syn">SYN</span><span class="pill p-sky">2 variants</span></div></div></div><div class="cd">White-label ESG reporting with mid-tier accounting firms</div><div class="cs"><div><div class="cs-v" style="color:var(--sky)">15</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--sky)"></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--amber)"></div><div class="ch"><div><div class="cn">Supply Chain SME</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-bpo">BPO</span><span class="pill p-amber">Draft</span></div></div></div><div class="cd">ESG reporting for supply chain SMEs facing buyer data demands</div><div class="cs"><div><div class="cs-v" style="color:var(--amber)">0</div><div class="cs-l">Leads</div></div><div><div class="cs-v">—</div><div class="cs-l">Sent</div></div><div><div class="cs-v">—</div><div class="cs-l">Opens</div></div><div><div class="cs-v">—</div><div class="cs-l">Replies</div></div></div></div>
+        <div class="camp"><div class="ci" style="background:var(--violet)"></div><div class="ch"><div><div class="cn">ESG Software Partnership</div><div style="display:flex;gap:6px;margin-top:4px"><span class="domain-tag d-enn">ENN</span><span class="pill p-violet">1 variant</span></div></div></div><div class="cd">Managed services partnerships with ESG platforms</div><div class="cs"><div><div class="cs-v" style="color:var(--violet)">8</div><div class="cs-l">Leads</div></div><div><div class="cs-v">0</div><div class="cs-l">Sent</div></div><div><div class="cs-v">0</div><div class="cs-l">Opens</div></div><div><div class="cs-v">0</div><div class="cs-l">Replies</div></div></div><div class="pbar" style="margin-top:14px"><div class="pfill" style="width:0%;background:var(--violet)"></div></div></div>
+      </div>
+      <div class="sec-label">Sequence Logic</div>
+      <div class="gc" style="display:flex;justify-content:space-between;align-items:center;text-align:center;padding:22px 16px;flex-wrap:wrap;gap:8px">
+        <div><div style="font-size:22px;margin-bottom:4px">✉</div><div style="font-size:11px;font-weight:600">Send</div><div style="font-size:9px;color:var(--text3)">Day 0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">🔄</div><div style="font-size:11px;font-weight:600">Follow 1</div><div style="font-size:9px;color:var(--text3)">Day 3</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">🔔</div><div style="font-size:11px;font-weight:600">Follow 2</div><div style="font-size:9px;color:var(--text3)">Day 7</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">⚡</div><div style="font-size:11px;font-weight:600">Nudge</div><div style="font-size:9px;color:var(--text3)">Day 14</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:22px;margin-bottom:4px">📦</div><div style="font-size:11px;font-weight:600">Archive</div><div style="font-size:9px;color:var(--text3)">Day 21</div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ EMAIL ══════════ -->
+    <div class="panel" id="p-email">
+      <div class="panel-head panel-head-row"><div><h1>Email</h1><div class="sub">18 unread across 4 accounts</div></div><button class="btn btn-p btn-sm" onclick="openM('compose')">✉ Compose</button></div>
+      <div class="chips" id="emailChips"><div class="chip on" data-filter="all">All (18)</div><div class="chip" data-filter="syn"><span class="domain-tag d-syn" style="background:none;padding:0">Synergy</span> 8</div><div class="chip" data-filter="bpo"><span class="domain-tag d-bpo" style="background:none;padding:0">BPO</span> 3</div><div class="chip" data-filter="enn"><span class="domain-tag d-enn" style="background:none;padding:0">Ennacle</span> 5</div><div class="chip" data-filter="agoc"><span class="domain-tag d-agoc" style="background:none;padding:0">AGOC</span> 2</div></div>
+      <div class="sec-label">Unread</div>
+      <div class="gc" style="padding:4px 18px">
+        <div class="lead-r" data-domain="syn"><div class="lead-av" style="background:linear-gradient(135deg,var(--mint),var(--teal));font-size:13px">G</div><div style="flex:1"><div class="ln">Greenomy Partnerships</div><div class="ld">Re: Implementation partner — CSRD platform</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">10:32</div><span class="domain-tag d-syn" style="margin-top:2px;display:inline-block">SYN</span></div></div>
+        <div class="lead-r" data-domain="syn"><div class="lead-av" style="background:linear-gradient(135deg,var(--sky),var(--indigo));font-size:13px">B</div><div style="flex:1"><div class="ln">BDO Sustainability</div><div class="ld">White-label ESG — initial interest</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">9:15</div><span class="domain-tag d-syn" style="margin-top:2px;display:inline-block">SYN</span></div></div>
+        <div class="lead-r" data-domain="enn"><div class="lead-av" style="background:linear-gradient(135deg,var(--violet),var(--pink));font-size:13px">P</div><div style="flex:1"><div class="ln">Pulsora Team</div><div class="ld">Enterprise partner program — next steps</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">8:41</div><span class="domain-tag d-enn" style="margin-top:2px;display:inline-block">ENN</span></div></div>
+        <div class="lead-r" data-domain="bpo"><div class="lead-av" style="background:linear-gradient(135deg,var(--sky),var(--teal));font-size:13px">M</div><div style="flex:1"><div class="ln">Meridian BPO Client</div><div class="ld">Monthly ops review — data request</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">8:02</div><span class="domain-tag d-bpo" style="margin-top:2px;display:inline-block">BPO</span></div></div>
+        <div class="lead-r" data-domain="agoc"><div class="lead-av" style="background:linear-gradient(135deg,var(--amber),var(--coral));font-size:13px">A</div><div style="flex:1"><div class="ln">AGOC Project Director</div><div class="ld">CEP Section 4 — revised programme</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">7:48</div><span class="domain-tag d-agoc" style="margin-top:2px;display:inline-block">AGOC</span></div></div>
+      </div>
+      <div class="sec-label">Earlier</div>
+      <div class="gc" style="padding:4px 18px">
+        <div class="lead-r" style="opacity:.5" data-domain="syn"><div class="lead-av" style="background:var(--text3);font-size:13px">R</div><div style="flex:1"><div class="ln">RSM Australia</div><div class="ld">Out of office auto-reply</div></div><div style="font-size:11px;color:var(--text3);flex-shrink:0">Yest.</div></div>
+        <div class="lead-r" style="opacity:.5" data-domain="agoc"><div class="lead-av" style="background:var(--text3);font-size:13px">C</div><div style="flex:1"><div class="ln">CEP Progress Review</div><div class="ld">Section 3 handover notes attached</div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">Yest.</div><span class="domain-tag d-agoc" style="margin-top:2px;display:inline-block">AGOC</span></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ TASKS ══════════ -->
+    <div class="panel" id="p-tasks">
+      <div class="panel-head panel-head-row"><div><h1>Tasks</h1><div class="sub">7 open · 3 overdue</div></div><button class="btn btn-p btn-sm" onclick="openM('newTask')">+ New Task</button></div>
+      <div class="chips"><div class="chip on">All Open</div><div class="chip">Overdue</div><div class="chip">Today</div><div class="chip">This Week</div><div class="chip">Completed</div></div>
+      <div class="gc" style="padding:6px 18px">
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Follow-up email: QIC Limited</div><div class="tmeta"><span class="pill p-coral">Overdue</span> <span class="pill p-mint">ESG Outreach</span> Mar 9</div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Send pitch: Grant Thornton AU</div><div class="tmeta"><span class="pill p-amber">Today</span> <span class="pill p-sky">Accounting Firm</span></div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Research: Greenomy partner program</div><div class="tmeta"><span class="pill p-sky">Tomorrow</span> <span class="pill p-violet">Software Partners</span></div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Prepare ESG case study draft</div><div class="tmeta"><span class="pill p-mint">On Track</span> Strategy · Mar 14</div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">GRI certification — Module 1</div><div class="tmeta"><span class="pill p-violet">Credentials</span> Mar 18</div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">Build ESG readiness scoring tool</div><div class="tmeta"><span class="pill p-teal">Lead Magnets</span> Mar 25</div></div></div>
+        <div class="task-r"><div class="task-ck" onclick="this.classList.toggle('done')"></div><div><div class="tn">LuminX pilot proposal for CEP</div><div class="tmeta"><span class="pill p-amber">GreenCore</span> Mar 20</div></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ TEMPLATES ══════════ -->
+    <div class="panel" id="p-templates">
+      <div class="panel-head panel-head-row"><div><h1>Templates</h1><div class="sub">Campaign-ready email templates</div></div><button class="btn btn-p btn-sm">+ New Template</button></div>
+      <div class="chips"><div class="chip on">Service Pitch</div><div class="chip">Accounting Firms</div><div class="chip">Supply Chain</div><div class="chip">Software</div><div class="chip">Follow-ups</div></div>
+      <div class="g2">
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Authority-led</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> Your Team Sets the Strategy — We Handle the ESG Heavy Lift</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], Mandatory sustainability reporting is here — and the reality is that the most time-consuming work isn't setting the strategy…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm">Preview</button><button class="btn btn-p btn-sm">Use</button></div></div>
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Problem-first</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> Scope 3, Materiality KPIs, ISSB — Without Hiring a Team</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], If your team is like the companies we speak with, the sustainability strategy is clear — but the execution bottleneck is real…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm">Preview</button><button class="btn btn-p btn-sm">Use</button></div></div>
+        <div class="gc"><div style="font-size:16px;font-weight:700;margin-bottom:8px">Concise & Direct</div><div style="font-size:12px;color:var(--text2);margin-bottom:6px"><strong>Subject:</strong> We Do the Hard Part of ESG Reporting — So Your Team Doesn't Have To</div><div style="font-size:12px;color:var(--text3);line-height:1.6;max-height:100px;overflow:hidden">Dear [Name], Synergy Global Alliance handles the most technically complex aspects of sustainability reporting…</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g btn-sm">Preview</button><button class="btn btn-p btn-sm">Use</button></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ AI RESEARCH ══════════ -->
+    <div class="panel" id="p-ai">
+      <div class="panel-head" style="padding-bottom:4px"><h1>AI Research ⚡</h1><div class="sub">ESG intelligence, lead enrichment, regulatory monitoring</div></div>
+      <div class="chat-wrap">
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="cb-wrap ai"><div class="cb-av">⚡</div><div class="cb">Hello Goody. I can help with ESG regulatory updates (ASRS, ISSB, CSRD), lead research and enrichment, competitive intelligence on ESG providers, GreenCore supplier due diligence, and market analysis. What shall we explore?</div></div>
+        </div>
+        <div class="chat-in"><input placeholder="Research anything…" id="chatIn" onkeydown="if(event.key==='Enter')sendC()"><button class="chat-send" onclick="sendC()">↑</button></div>
+      </div>
+    </div>
+
+    <!-- ══════════ KPIs ══════════ -->
+    <div class="panel" id="p-kpis">
+      <div class="panel-head"><h1>KPIs & Targets</h1><div class="sub">Revenue · Outreach · Performance</div></div>
+      <div class="sec-label">Revenue Targets</div>
+      <div class="bento">
+        <div class="bento-card"><div class="bi" style="background:var(--mint-bg)">$</div><div class="bv" style="color:var(--mint)">175K</div><div class="bl">Year 1 · 5 clients</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--sky-bg)">$</div><div class="bv" style="color:var(--sky)">350K</div><div class="bl">Year 2 · 10 clients</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--violet-bg)">$</div><div class="bv" style="color:var(--violet)">700K</div><div class="bl">Year 3+ · 20 clients</div></div>
+        <div class="bento-card"><div class="bi" style="background:var(--amber-bg)">$</div><div class="bv" style="color:var(--amber)">0</div><div class="bl">Current MRR</div></div>
+      </div>
+      <div class="sec-label">Outreach KPIs</div>
+      <div class="g3">
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Emails Sent</div><div style="font-size:36px;font-weight:800;color:var(--sky);letter-spacing:-1px">0</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 50/week</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--sky)"></div></div></div>
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Response Rate</div><div style="font-size:36px;font-weight:800;color:var(--mint);letter-spacing:-1px">--</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 15%</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--mint)"></div></div></div>
+        <div class="gc" style="text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:10px">Meetings Booked</div><div style="font-size:36px;font-weight:800;color:var(--violet);letter-spacing:-1px">0</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Target: 5/month</div><div class="pbar" style="margin-top:10px"><div class="pfill" style="width:0%;background:var(--violet)"></div></div></div>
+      </div>
+      <div class="sec-label">Conversion Funnel</div>
+      <div class="gc" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;text-align:center">
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Leads</div><div style="font-size:28px;font-weight:800">42</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Sent</div><div style="font-size:28px;font-weight:800;color:var(--sky)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Responded</div><div style="font-size:28px;font-weight:800;color:var(--amber)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Meetings</div><div style="font-size:28px;font-weight:800;color:var(--violet)">0</div></div><div style="color:var(--text3)">→</div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Won</div><div style="font-size:28px;font-weight:800;color:var(--mint)">0</div></div>
+      </div>
+      <div class="sec-label">Milestones</div>
+      <div class="gc" style="padding:8px 18px">
+        <div class="task-r"><div class="task-ck"></div><div><div class="tn">GRI Professional Certification</div><div class="tmeta"><span class="pill p-amber">In Progress</span></div></div></div>
+        <div class="task-r"><div class="task-ck"></div><div><div class="tn">CFA ESG Certificate</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+        <div class="task-r"><div class="task-ck"></div><div><div class="tn">First pilot client secured</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+        <div class="task-r"><div class="task-ck"></div><div><div class="tn">ESG readiness tool live</div><div class="tmeta"><span class="pill p-dim">Not Started</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ SUPPLIERS ══════════ -->
+    <div class="panel" id="p-suppliers">
+      <div class="panel-head panel-head-row"><div><h1>GreenCore Suppliers</h1><div class="sub">120 suppliers · 96 emails · 6 sectors</div></div><button class="btn btn-p btn-sm">+ Add</button></div>
+      <div class="chips"><div class="chip on">All (120)</div><div class="chip">Agriculture</div><div class="chip">Renewable Energy</div><div class="chip">Wastewater</div><div class="chip">Textile</div><div class="chip">Transport</div><div class="chip">Climate Assets</div></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Supplier</th><th>Sector</th><th>Country</th><th>Tier</th><th>Email</th><th></th></tr></thead><tbody>
+        <tr><td>1</td><td><strong>CropX Technologies</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Israel</td><td><span class="pill p-sky">Tier 1</span></td><td>sales@cropx.com</td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>2</td><td><strong>Netafim</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Israel</td><td><span class="pill p-sky">Tier 1</span></td><td style="color:var(--text3)">Website form</td><td><button class="btn btn-g btn-sm">🔗</button></td></tr>
+        <tr><td>3</td><td><strong>Aranet</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>Latvia</td><td><span class="pill p-sky">Tier 1</span></td><td>salesemea@saftehnika.com</td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+        <tr><td>4</td><td><strong>Toro Irrigation</strong></td><td><span class="pill p-mint">Agriculture</span></td><td>USA</td><td><span class="pill p-amber">Tier 2</span></td><td>CRC@toro.com</td><td><button class="btn btn-g btn-sm">✉</button></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- ══════════ TEAM ══════════ -->
+    <div class="panel" id="p-team">
+      <div class="panel-head panel-head-row"><div><h1>Team & Roles</h1><div class="sub">User management & access control</div></div><button class="btn btn-p btn-sm" onclick="openM('addUser')">+ Invite</button></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>User</th><th>Email</th><th>Role</th><th>Domains</th><th>Last Active</th></tr></thead><tbody>
+        <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:11px">G</div><strong>Goody</strong></div></td><td>goody@synergy.lk</td><td><span class="role r-admin">Admin</span></td><td><span class="domain-tag d-syn">SYN</span> <span class="domain-tag d-bpo">BPO</span> <span class="domain-tag d-enn">ENN</span> <span class="domain-tag d-agoc">AGOC</span></td><td style="font-size:11px;color:var(--text2)">Now</td></tr>
+        <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:var(--input-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text3)">A</div><span style="color:var(--text2)">Analyst (Invited)</span></div></td><td style="color:var(--text3)">analyst@synergy.lk</td><td><span class="role r-analyst">Analyst</span></td><td><span class="domain-tag d-syn">SYN</span></td><td style="font-size:11px;color:var(--text3)">Pending</td></tr>
+      </tbody></table></div>
+      <div class="sec-label">Role Permissions</div>
+      <div class="g2">
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-admin">Admin</span> Full Access</div><div style="font-size:12px;color:var(--text2);line-height:1.7">All email accounts, campaigns, leads, team management, settings, KPIs, AI research, billing</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-mgr">Manager</span> Operations</div><div style="font-size:12px;color:var(--text2);line-height:1.7">Assigned emails, campaign execution, lead management, task assignment, reporting</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-analyst">Analyst</span> Research</div><div style="font-size:12px;color:var(--text2);line-height:1.7">AI research, lead research, GreenCore (view), KPI dashboards (view), own tasks</div></div>
+        <div class="gc"><div style="font-size:15px;font-weight:700;margin-bottom:6px"><span class="role r-viewer">Viewer</span> Read Only</div><div style="font-size:12px;color:var(--text2);line-height:1.7">Dashboard view, pipeline view, KPIs. No email, editing, or campaign access</div></div>
+      </div>
+    </div>
+
+    <!-- ══════════ SETTINGS ══════════ -->
+    <div class="panel" id="p-settings">
+      <div class="panel-head"><h1>Settings</h1><div class="sub">Configuration & integrations</div></div>
+      <div class="g2">
+        <div class="gc">
+          <div style="font-size:16px;font-weight:700;margin-bottom:14px">Email Accounts</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-syn">SYN</span><span style="font-size:13px">goody@synergy.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-bpo">BPO</span><span style="font-size:13px">goody@bposervices.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-enn">ENN</span><span style="font-size:13px">goody@ennacle.com</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><div style="display:flex;align-items:center;gap:8px"><span class="domain-tag d-agoc">AGOC</span><span style="font-size:13px">goody@agoc.lk</span></div><span class="pill p-mint"><span class="dot" style="background:var(--mint)"></span> Active</span></div>
+          </div>
+        </div>
+        <div class="gc">
+          <div style="font-size:16px;font-weight:700;margin-bottom:14px">Integrations</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Microsoft Outlook (OAuth)</span><span class="pill p-mint">Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">LinkedIn Sales Navigator</span><span class="pill p-dim">Not Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Google Calendar</span><span class="pill p-dim">Not Connected</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--input-bg);border-radius:10px"><span style="font-size:13px">Claude API (AI Research)</span><span class="pill p-amber">Setup Pending</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ NOTIFICATIONS ══════════ -->
+    <div class="panel" id="p-notif">
+      <div class="panel-head"><h1>Notifications</h1><div class="sub">5 new</div></div>
+      <div class="gc" style="padding:4px 18px">
+        <div class="lead-r"><div class="lead-av" style="background:var(--coral-bg);color:var(--coral);font-size:14px">🔔</div><div style="flex:1"><div class="ln">Follow-up overdue: QIC Limited</div><div class="ld">Was due 2 days ago · ESG Outreach</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--mint-bg);color:var(--mint);font-size:14px">✉</div><div style="flex:1"><div class="ln">Greenomy responded</div><div class="ld">10:32 AM · Synergy inbox</div></div></div>
+        <div class="lead-r"><div class="lead-av" style="background:var(--teal-bg);color:var(--teal);font-size:14px">⚡</div><div style="flex:1"><div class="ln">ASRS filing guidance published</div><div class="ld">Auto-detected regulatory update</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════ BOTTOM NAV ══════ -->
+<div class="bnav">
+  <div class="bnav-tab on" data-panel="home"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg><span class="bl">Home</span></div>
+  <div class="bnav-tab" data-panel="pipeline"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span class="bl">Pipeline</span><div class="nd"></div></div>
+  <div class="bnav-tab" data-panel="campaigns"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h4"/></svg><span class="bl">Campaigns</span></div>
+  <div class="bnav-tab" data-panel="tasks"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 5-5"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span class="bl">Tasks</span></div>
+  <div class="bnav-tab" data-panel="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span class="bl">AI</span></div>
+</div>
+
+<!-- ══════ MODALS ══════ -->
+<div class="modal-bg" id="m-newLead"><div class="modal"><h2>Add New Lead</h2>
+  <div class="fg-row"><div class="fg"><label>Company</label><input placeholder="e.g. Stockland"></div><div class="fg"><label>Country</label><select><option>Australia</option><option>Singapore</option><option>UK</option><option>Hong Kong</option><option>Sri Lanka</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Type</label><select><option>Corporate</option><option>Accounting Firm</option><option>Software Partner</option><option>Supply Chain SME</option></select></div><div class="fg"><label>Sector</label><input placeholder="e.g. Real Estate"></div></div>
+  <div class="fg-row"><div class="fg"><label>Email</label><input placeholder="contact@company.com"></div><div class="fg"><label>Contact Name</label><input placeholder="Full name"></div></div>
+  <div class="fg-row"><div class="fg"><label>Temperature</label><select><option>Hot</option><option>Warm</option><option>Cold</option></select></div><div class="fg"><label>Priority</label><select><option>A</option><option>B</option><option>C</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Project</label><select><option>ESG Outreach</option><option>GreenCore</option><option>Drone Survey</option><option>York Street</option><option>CEP</option></select></div><div class="fg"><label>Send From</label><select><option>goody@synergy.lk</option><option>goody@bposervices.lk</option><option>goody@ennacle.com</option><option>goody@agoc.lk</option></select></div></div>
+  <div class="fg"><label>Notes</label><textarea placeholder="Notes…"></textarea></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('newLead')">Cancel</button><button class="btn btn-p" onclick="closeM('newLead')">Save Lead</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-compose"><div class="modal"><h2>Compose Email</h2>
+  <div class="fg"><label>From</label><select><option>goody@synergy.lk (Synergy)</option><option>goody@bposervices.lk (BPO)</option><option>goody@ennacle.com (Ennacle)</option><option>goody@agoc.lk (AGOC)</option></select></div>
+  <div class="fg"><label>To</label><input placeholder="recipient@company.com"></div>
+  <div class="fg"><label>Subject</label><input placeholder="Subject line"></div>
+  <div class="fg"><label>Template</label><select><option>— None —</option><option>Service Pitch: Authority-led</option><option>Service Pitch: Problem-first</option><option>Service Pitch: Concise</option><option>Accounting Firm Partnership</option><option>Software Partnership</option></select></div>
+  <div class="fg"><label>Body</label><textarea style="min-height:140px" placeholder="Write your email…"></textarea></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('compose')">Cancel</button><button class="btn btn-g">Schedule</button><button class="btn btn-p" onclick="closeM('compose')">Send ✉</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-newTask"><div class="modal"><h2>New Task</h2>
+  <div class="fg"><label>Title</label><input placeholder="What needs to be done?"></div>
+  <div class="fg-row"><div class="fg"><label>Project</label><select><option>ESG Outreach</option><option>GreenCore</option><option>CEP</option><option>Strategy</option><option>Credentials</option></select></div><div class="fg"><label>Assign To</label><select><option>Goody (Admin)</option><option>Analyst</option></select></div></div>
+  <div class="fg-row"><div class="fg"><label>Due Date</label><input type="date"></div><div class="fg"><label>Priority</label><select><option>High</option><option>Medium</option><option>Normal</option></select></div></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('newTask')">Cancel</button><button class="btn btn-p" onclick="closeM('newTask')">Create</button></div>
+</div></div>
+
+<div class="modal-bg" id="m-addUser"><div class="modal"><h2>Invite User</h2>
+  <div class="fg-row"><div class="fg"><label>Name</label><input placeholder="Full name"></div><div class="fg"><label>Email</label><input placeholder="user@domain.com"></div></div>
+  <div class="fg-row"><div class="fg"><label>Role</label><select><option>Admin</option><option>Manager</option><option>Analyst</option><option>Viewer</option></select></div><div class="fg"><label>Domain Access</label><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox" checked> Synergy</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> BPO</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> Ennacle</label><label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer"><input type="checkbox"> AGOC</label></div></div></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn btn-g" onclick="closeM('addUser')">Cancel</button><button class="btn btn-p" onclick="closeM('addUser')">Send Invite</button></div>
+</div></div>
+
+<script>
+// ─── GREETING ───
+!function(){const h=new Date().getHours();document.getElementById('greet').textContent=h<12?'Good morning':h<17?'Good afternoon':'Good evening'}();
+
+// ─── THEME ───
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('synergy-theme',next);
+}
+// Init theme from localStorage or system preference
+!function(){
+  const saved=localStorage.getItem('synergy-theme');
+  if(saved){document.documentElement.setAttribute('data-theme',saved)}
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}
+}();
+
+// ─── NAVIGATION (data-attribute driven) ───
+function go(id){
+  // Switch panel
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('p-'+id);
+  if(panel)panel.classList.add('active');
+
+  // Sync sidebar — mark first matching snav with data-panel=id
+  document.querySelectorAll('.snav').forEach(n=>n.classList.remove('active'));
+  const sideNav=document.querySelector(`.snav[data-panel="${id}"]`);
+  if(sideNav)sideNav.classList.add('active');
+
+  // Sync bottom nav
+  document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('on'));
+  const bNav=document.querySelector(`.bnav-tab[data-panel="${id}"]`);
+  if(bNav)bNav.classList.add('on');
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobOverlay').classList.remove('open');
+  document.getElementById('scrollC').scrollTop=0;
+}
+
+// Sidebar click delegation
+document.querySelectorAll('.snav[data-panel]').forEach(nav=>{
+  nav.addEventListener('click',()=>go(nav.dataset.panel));
+});
+
+// Bottom nav click delegation
+document.querySelectorAll('.bnav-tab[data-panel]').forEach(tab=>{
+  tab.addEventListener('click',()=>go(tab.dataset.panel));
+});
+
+// ─── SIDEBAR MOBILE ───
+function toggleSB(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('mobOverlay').classList.toggle('open');
+}
+
+// ─── MODALS ───
+function openM(id){document.getElementById('m-'+id).classList.add('show')}
+function closeM(id){document.getElementById('m-'+id).classList.remove('show')}
+document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')}));
+
+// ─── CHAT ───
+function sendC(){
+  const i=document.getElementById('chatIn');
+  const msg=i.value.trim();
+  if(!msg)return;
+  const c=document.getElementById('chatMsgs');
+  c.innerHTML+=`<div class="cb-wrap user"><div class="cb-av">G</div><div class="cb">${escHtml(msg)}</div></div>`;
+  i.value='';
+  setTimeout(()=>{
+    c.innerHTML+=`<div class="cb-wrap ai"><div class="cb-av">⚡</div><div class="cb">I'll research that for you. In production this connects to the Claude API for real-time ESG regulatory monitoring, lead enrichment, competitive analysis, and market intelligence across your pipeline.</div></div>`;
+    c.scrollTop=c.scrollHeight;
+  },600);
+  c.scrollTop=c.scrollHeight;
+}
+function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+// ─── CHIP TOGGLING ───
+document.querySelectorAll('.chips').forEach(row=>{
+  row.addEventListener('click',e=>{
+    const chip=e.target.closest('.chip');
+    if(!chip)return;
+    const isAll=chip.textContent.trim().startsWith('All')||chip===row.children[0];
+    if(isAll){
+      row.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+      chip.classList.add('on');
+    }else{
+      const allChip=row.querySelector('.chip:first-child');
+      if(allChip)allChip.classList.remove('on');
+      chip.classList.toggle('on');
+      // If none selected, re-select All
+      if(!row.querySelector('.chip.on')&&allChip){allChip.classList.add('on')}
+    }
+  });
+});
+</script>
+</body>
+</html>
